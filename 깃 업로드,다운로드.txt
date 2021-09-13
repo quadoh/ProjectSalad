@@ -1,0 +1,48 @@
+브랜치 생성
+git branch 브랜치이름 기존브랜치 (브랜치이름은 생성할 브랜치)
+---------------------------------
+브랜치 생성 + 변경
+git checkout -b 브랜치이름
+---------------------------------
+브랜치 변경
+git checkout 브랜치이름
+---------------------------------
+업로드시
+git init
+git remote add origin https://github.com/quadoh/ProjectSalad.git
+
+git add testPcopy/ (추가할 파일or폴더)
+or
+git add . (모든파일)
+
+git commit -m "커밋된 내용 설명"
+
+git push -u origin 브랜치이름
+----------------------------------
+다운로드시
+git init
+
+git remote add origin https://github.com/quadoh/ProjectSalad.git
+
+git branch (브랜치 확인)
+
+git branch 브랜치이름 (브랜치 변경)
+
+(
+git fetch (깃허브 변경사항(commit) 확인)
+git merge (깃허브 변경사항 적용)
+)
+혹은
+(
+git pull (깃허브 변경사항 확인 & 적용)
+)
+
+
+------------------------------------
+git pull 안먹힐시
+********중요***********
+(로컬코드 날라갈수도 있음!! 기존코드 백업한뒤 사용할것)
+********중요***********
+git fetch --all
+git reset --hard origin/master
+git pull
