@@ -1,5 +1,6 @@
 package com.teamsalad.service;
 
-public class testService {
+public interface adminService {
+	
 
 }
