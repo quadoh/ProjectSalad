@@ -151,10 +151,19 @@
 		WHERE table_name='recipe_board'
      </select>
      
-     <select id="R_Board_searchData" resultType="String">
-     	select ${column}
+     <select id="R_Board_searchData" resultType="int">
+     	select rcp_b_num
      	from recipe_board
      	where ${column} like #{data}
+     </select>
+     
+     <select id="R_Board_searchNum" resultType="String">
+     	select rcp_b_title
+     	from recipe_board
+     	where rcp_b_num in 
+     	<foreach collection="rcp_b_nums" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
      </select>
      
  </mapper>

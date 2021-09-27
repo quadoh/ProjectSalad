@@ -1,18 +1,14 @@
 package com.teamsalad.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.teamsalad.domain.BoardMemberVO;
 import com.teamsalad.domain.replyVO;
 import com.teamsalad.persistence.R_BoardDAO;
-//import com.teamsalad.persistence.R_BoardDAOImpl;
 
 @Service
 public class R_BoardServiceImpl implements R_BoardService {
@@ -26,7 +22,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 		
 		List<BoardMemberVO> vo = dao.r_Board_listPage(page, total);
 		
-		System.out.println("service ��� Ȯ�� :" + vo);
+		System.out.println("service 결과확인 :" + vo);
 		
 		return vo;
 	}
@@ -37,7 +33,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 		
 		BoardMemberVO vo = dao.r_Board_detail(rcp_b_num);
 		
-		System.out.println(" service ��� Ȯ�� : " + vo);
+		System.out.println(" service 결과확인 : " + vo);
 		
 		return vo;
 		
@@ -78,7 +74,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 		
 		List<BoardMemberVO> vo = dao.r_Board_weeklyPopular();
 		
-		System.out.println("service ��� Ȯ�� :" + vo);
+		System.out.println("service 결과확인 :" + vo);
 		
 		return vo;
 	}
@@ -86,14 +82,13 @@ public class R_BoardServiceImpl implements R_BoardService {
 	//검색한 데이터 불러오기
 	@Override
 	public List<String> getSearchData(String column, String data) throws Exception{
-		List<String> datas = dao.r_Board_searchData(column, ("%" + data + "%"));
+		List<Integer> rcp_b_nums = dao.r_Board_searchData(column, ("%" + data + "%"));
 		
-		System.out.print(" Service Search Data : ");
-		for(String s : datas) {
-			System.out.print(s + ",");
-		}
+		List<String> searchTitle = dao.r_Board_searchNum(rcp_b_nums);
 		
-		return datas;
+		System.out.print(" Service Search Data : " + searchTitle.size());
+		
+		return searchTitle;
 	}
 	
 	@Override

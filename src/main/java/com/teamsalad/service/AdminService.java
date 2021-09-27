@@ -106,6 +106,11 @@ public interface AdminService {
 	// 회원 쿠폰 발급
 	public void memberInsertCoupon(memberVO mvo) throws Exception;
 	
+	////////////////////////////////////////////////////////////판매 성향 정보 관련////////////////////////////////////////////////////////////////////
+
+	// 인기 레시피 게시판 탑텐 조회
+	public List<recipeBoardVO> getR_Board_TopList() throws Exception;
+	
 	
 
 }

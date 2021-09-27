@@ -8,15 +8,15 @@
 	<section class="visual">
 		<div class="inner">
 			<div class="tit fade-in">
-				<img src="img/visual_title.png" alt="" />
+				<img src="/resources/saladmall/img/visual_title.png" alt="" />
 			</div>
 			
 			<div class="v1 fade-in">
-				<img src="img/visual_1.png" alt="그림자" />
+				<img src="/resources/saladmall/img/visual_1.png" alt="그림자" />
 			</div>
 			
 			<div class="v2 fade-in">
-				<img src="img/visual_2.gif" alt="샐러드 사진" />
+				<img src="/resources/saladmall/img/visual_2.gif" alt="샐러드 사진" />
 			</div>
 
 			<div class="v3 fade-in">

@@ -605,6 +605,25 @@ public class Admin_Controller {
 
 	}
 	
-////////////////////////////////////////////////////////////게시판 관리 정보 관련////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// 판매 성향 정보 관련////////////////////////////////////////////////////////////////////
+	
+	// 주간 레시피 게시판 top 10 출력(GET)
+	@RequestMapping(value = "/RBoard_TopList", method = RequestMethod.GET)
+	public String RBoard_TopListGET(HttpSession session, Model model) throws Exception {
+
+		logger.info(" C: R_Board_TopListGET() 호출");
+
+		String admin_id = (String) session.getAttribute("m_id");
+		// 임시 설정
+		admin_id = "admin";
+		if (admin_id == null || !admin_id.equals("admin")) {
+			return "redirect:/Admin/notAdminAccess";
+		}
+
+		// Criteria 객체 정보 저장(pageStart/pageSize)
+		model.addAttribute("RBoard_TopList", service.getR_Board_TopList());
+
+		return "/Admin/RBoard_TopList";
+		}
 
 }

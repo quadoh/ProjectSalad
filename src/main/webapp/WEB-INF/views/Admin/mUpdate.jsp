@@ -6,6 +6,13 @@
 	pageEncoding="UTF-8"%>
  <%@ include file="header.jsp"%>
  
+ <style>
+
+th, td {
+text-align: center;
+}
+</style>
+ 
 <h1 style="text-align: center; padding-top: 30px;">회원 정보 수정</h1>
 
 <section style="padding: 30px 400px 30px 400px;">

@@ -5,6 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
+
+<style>
+
+th, td {
+text-align: center;
+}
+</style>
 	
 <h1 style="text-align: center; padding-top: 30px;">샐러드 재료 등록</h1>
 

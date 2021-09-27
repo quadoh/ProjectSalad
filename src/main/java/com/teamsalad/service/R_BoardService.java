@@ -40,4 +40,5 @@ public interface R_BoardService {
 	// 댓글 수정하기
 	public void modifyReply(int reply_b_num, String reply_b_content) throws Exception;
 	
+	
 }

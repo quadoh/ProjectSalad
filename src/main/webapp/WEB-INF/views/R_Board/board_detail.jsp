@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath }/resources/"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:set var="path" value="${pageContext.request.contextPath }/resources/bootstrap/"/>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -158,7 +162,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -207,6 +211,8 @@
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
+                                <hr>
+                                <input type="button" value="searchdata">
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -231,11 +237,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="blog__details__hero__text">
-                        <h2>The Moment You Need To Remove Garlic From The Menu</h2>
+                        <h2>${board.board.rcp_b_title }</h2>
                         <ul>
-                            <li>By Michael Scofield</li>
-                            <li>January 14, 2019</li>
-                            <li>8 Comments</li>
+                            <li>${board.member.m_name }</li>
+                            <li><fmt:formatDate value="${board.board.rcp_b_date }" pattern="yyyy년 MM월 dd일"/> </li>
+                            <li>${fn:length(comments) } Comments</li>
                         </ul>
                     </div>
                 </div>
@@ -252,18 +258,13 @@
                     <div class="blog__sidebar">
                         <div class="blog__sidebar__search">
                             <form action="#">
-                                <input type="text" placeholder="Search...">
+                                <input id="searchText" type="text" placeholder="Search...">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>
-                            <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
+                            <ul id="autoText">
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
@@ -431,7 +432,7 @@
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-heart"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-pinterest"></i></a>
@@ -463,7 +464,18 @@
     <script src="${path}js/owl.carousel.min.js"></script>
     <script src="${path}js/main.js"></script>
 
-
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#searchText").keyup(function(){
+				$("#autoText").empty();
+				$.getJSON('searchData', {searchData:$("#searchText").val()}, function(data){
+					$.each(data, function(index, title){
+						$("#autoText").append('<li>'+title+'</li>');
+					});
+				});
+			});
+		});
+	</script>
 
 </body>
 

@@ -3,6 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp"%>
 
+<style>
+
+th, td {
+text-align: center;
+}
+</style>
+
 <h1 style="text-align: center; padding-top: 30px;">재료 재고 목록 조회</h1>
 
 <section class="content" style="padding-top: 50px; padding-bottom: 50px;">

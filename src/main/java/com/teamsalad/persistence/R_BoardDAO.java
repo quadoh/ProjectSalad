@@ -62,5 +62,7 @@ public interface R_BoardDAO {
 	public List<String> r_Board_getColumn() throws Exception;
 	
 	// 가져온 컬럼 데이터로 데이터 검색하기
-	public List<String> r_Board_searchData(String column, String data) throws Exception;
+	public List<Integer> r_Board_searchData(String column, String data) throws Exception;
+	
+	public List<String> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception;
 }

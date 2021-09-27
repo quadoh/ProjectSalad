@@ -6,10 +6,14 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.recipeBoardVO;
+import com.teamsalad.domain.replyVO;
 import com.teamsalad.service.R_BoardService;
 
 @Controller
@@ -36,6 +40,8 @@ public class R_Board_Controller {
 		
 		String m_id = vo.getBoard().getM_id();
 		boolean likeCheck = false;
+
+		List<replyVO> comments = service.getBoardReply(rcp_b_num);
 		
 		if(m_id != null)
 			likeCheck = service.checkBoardLike(rcp_b_num, m_id);
@@ -50,5 +56,16 @@ public class R_Board_Controller {
 		model.addAttribute("board", vo);
 		model.addAttribute("weeklyPopular", weeklyPopular);
 		model.addAttribute("like", likeCheck);
+		model.addAttribute("comments", comments);
+	}
+	
+	@RequestMapping(value = "searchData")
+	public @ResponseBody List<String> searchTitle(/*@PathVariable("searchData")*/ String searchData) throws Exception{
+		
+		System.out.println("검색 데이터!!!!!!!!!!!!!!!!! : " + searchData);
+		
+		List<String> searchTitle = service.getSearchData("rcp_b_title", searchData);
+		
+		return searchTitle;
 	}
 }

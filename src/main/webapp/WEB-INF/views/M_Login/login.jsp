@@ -11,7 +11,7 @@
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
 <!-- Bootstrap 3.3.4 -->
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+<link href="/resources/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
 <!-- Font Awesome Icons -->
 <link
@@ -22,11 +22,11 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Theme style -->
-<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet"
+<link href="/resources/admin/dist/css/AdminLTE.min.css" rel="stylesheet"
 	type="text/css" />
 <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-<link href="/resources/dist/css/skins/_all-skins.min.css"
+<link href="/resources/admin/dist/css/skins/_all-skins.min.css"
 	rel="stylesheet" type="text/css" />
 	
 <meta name="google-signin-scope" content="profile email">
@@ -34,7 +34,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <!-- jQuery 2.1.4 -->
-<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="/resources/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <body>
 
 <section style="padding: 100px 400px 100px 400px; margin-left: 100px;">

@@ -9,16 +9,16 @@
     <title> SaladMall | AdminPage </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/admin/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/admin/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +29,7 @@
     
   </head>
       <!-- jQuery 2.1.4 -->
-    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="/resources/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
   <body class="skin-green-light sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
@@ -65,7 +65,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
+                            <img src="/resources/admin/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -77,7 +77,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -89,7 +89,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Developers
@@ -101,7 +101,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/admin/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Sales Department
@@ -113,7 +113,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
+                            <img src="/resources/admin/dist/img/user4-128x128.jpg" class="img-circle" alt="user image"/>
                           </div>
                           <h4>
                             Reviewers
@@ -242,13 +242,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="/resources/dist/img/main_img.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Admin</span>
+                  <img src="/resources/admin/dist/img/main_img.jpg" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">admin</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="/resources/dist/img/main_admin_img.jpg" class="img-circle" alt="User Image" />
+                    <img src="/resources/admin/dist/img/main_admin_img.jpg" class="img-circle" alt="User Image" />
                     <p>
                       Lee Chunsik - Administrator
                       <small>Member since Nov. 2012</small>
@@ -292,7 +292,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="/resources/dist/img/main_img.jpg" class="img-circle" alt="User Image" />
+              <img src="/resources/admin/dist/img/main_img.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
               <p>Lee Chunsik</p>
@@ -330,18 +330,17 @@
 	            </li>
 	            <li class="treeview">
 	              <a href="#">
-	                <i class="fa fa-dashboard"></i> <span>게시판 관리</span> <i class="fa fa-angle-left pull-right"></i>
+	                <i class="fa fa-dashboard"></i> <span>판매 성향 분석</span> <i class="fa fa-angle-left pull-right"></i>
 	              </a>
 	              <ul class="treeview-menu">
-	                <li><a href="/resources/index.html"><i class="fa fa-circle-o"></i> 주간 인기상품 </a></li>
-	                <li><a href="/resources/index2.html"><i class="fa fa-circle-o"></i> 고객 센터 </a></li>
-	                <li><a href="/resources/index2.html"><i class="fa fa-circle-o"></i> FAQ</a></li>
+	                <li><a href="/Admin/RBoard_TopList"><i class="fa fa-circle-o"></i> 주간 레시피 TOP 10 </a></li>
+	                <li><a href="/resources/admin/index2.html"><i class="fa fa-circle-o"></i> 주간 샐러드 TOP 10 </a></li>
 	              </ul>
 	            </li>
             <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>샐러드몰 이동</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>레시피 게시판 이동</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>고객 게시판 이동</span></a></li>
+            <li><a href="../index"><i class="fa fa-circle-o text-red"></i> <span>샐러드몰 이동</span></a></li>
+            <li><a href="../R_Board/boardList"><i class="fa fa-circle-o text-yellow"></i> <span>레시피 게시판 이동</span></a></li>
+            <li><a href="../CS/listAll"><i class="fa fa-circle-o text-aqua"></i> <span>고객 게시판 이동</span></a></li>
           </ul>
         </section>
         <!-- /.sidebar -->

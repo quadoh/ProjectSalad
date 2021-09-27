@@ -18,21 +18,37 @@
 	
 	<h2>야채 목록</h2>
 	<!-- 재료DB에서 카테고리 1(야채) 받아오기 -->
-	<c:forEach var="vo" items="${ingredientList }">
-	  <p>${vo.igdt_name }</p>
-	  <p><input type="number" name="amount" value="1">개</p>
-	  <p>${vo.igdt_price }</p>
-	  <p><input type="button" class="add" value="추가" onclick="Cookies.set('${vo.igdt_name}', '${vo.igdt_price }')"></p>
-	  <!-- CDN 방식의 데이터 필요(팀 개발방향과 다른데 괜찮나?) -->
+	<c:forEach var="vo" varStatus="status" items="${ingredientList }">
+	  <form name="igdt${status.count}" action="">
+	    <p>${vo.igdt_name }</p>
+	    <p>${vo.igdt_price }</p>
+	    <input type="hidden" name="igdt_name" value="${vo.igdt_name }">
+	    <input type="hidden" name="igdt_price" value="${vo.igdt_price }">
+	    <inpit type="radio" name="isOn" value="add">추가
+	    <inpit type="radio" name="isOn" value="sub">빼기
+	    <!-- <input type="button" class="add" value="추가"> -->
+	  </form>
 	</c:forEach>
 	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			/* if(".add").on("click",function(){
+				/* Cookies.set(${vo.igdt_name}, ${vo.igdt_price }); */
+				$(document).
+			});  */
+		});
+	</script>
 	
+	<hr>
 	<!-- 각 스텝별로 다르게 -->
 	<input type="button" value="이전" onclick="location.href='http://localhost:8088/R_Custom/step1'">
 	<input type="button" value="다음" onclick="location.href='http://localhost:8088/R_Custom/step3'">
 	
+	<hr>
 	<h2>현재 담긴 값(장바구니처럼)</h2>
 	<!-- 쿠키에서 값 가져오기 -->
+	
 	
 	<input type="button" value="레시피 등록">
 	<input type="button" value="구매">

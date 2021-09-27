@@ -309,5 +309,17 @@ public class AdminServiceImpl implements AdminService {
 		adao.memberInsertCoupon(mvo);
 		
 	}
+	
+////////////////////////////////////////////////////////////판매 성향 정보 관련////////////////////////////////////////////////////////////////////
+
+	// 인기 레시피 게시판 탑텐 조회
+	@Override
+	public List<recipeBoardVO> getR_Board_TopList() throws Exception {
+		
+		System.out.println("S : getR_Board_TopList() 호출! ");
+		
+		return adao.getR_Board_TopList();
+		
+	}
 
 }
