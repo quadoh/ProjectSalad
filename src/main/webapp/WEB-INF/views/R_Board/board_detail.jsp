@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="path" value="${pageContext.request.contextPath }/resources/bootstrap/"/>
+<c:set var="path" value="${pageContext.request.contextPath }/resources/saladmall/"/>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -262,9 +262,10 @@
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
-                            <ul id="autoText">
+                        <div class="blog__sidebar__item" style="width: 360px; height: 214px;">
+                            <h4>Searche By</h4>
+<!--                             스크롤바 숨기기 css 작성해야함 -->
+                            <ul id="autoText" style="overflow: scroll;" >
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
@@ -299,17 +300,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
@@ -340,7 +331,8 @@
                                         <li><span>Tags:</span> All, Trending, Cooking, Healthy Food, Life Style</li>
                                     </ul>
                                     <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
+<%--                                     ${board.like }로 좋아요 한지 안한지 true, false로 체크 가능 이걸로 색깔 지정해야함 --%>
+                                        <a href="./likeCheck?rcp_b_num=${board.board.rcp_b_num }"><i class="fa fa-heart"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -470,10 +462,12 @@
 				$("#autoText").empty();
 				$.getJSON('searchData', {searchData:$("#searchText").val()}, function(data){
 					$.each(data, function(index, title){
-						$("#autoText").append('<li>'+title+'</li>');
+						console.log(index);
+						$("#autoText").append('<li><a href="./board_detail?rcp_b_num=' + title.rcp_b_num + '">'+title.rcp_b_title+'</a></li>');
 					});
 				});
 			});
+			$
 		});
 	</script>
 

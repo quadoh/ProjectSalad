@@ -15,6 +15,7 @@ import com.teamsalad.domain.ingredientVO;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
+import com.teamsalad.domain.recipeVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -366,6 +367,14 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return sqlSession.selectList(namespace + ".rBoardTopList");
 			
+	}
+
+	@Override
+	public List<recipeVO> getSalad_TopList() throws Exception {
+		
+		logger.info("getSalad_TopList() 호출 ");
+
+		return sqlSession.selectList(namespace + ".saladTopList");				
 	}
 
 	

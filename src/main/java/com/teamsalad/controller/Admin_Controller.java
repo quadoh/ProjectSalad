@@ -327,7 +327,7 @@ public class Admin_Controller {
 		logger.info("igdtImgRegisterPOST() 실행");
 
 		ServletContext servletContext = request.getSession().getServletContext();
-		String uploadFolder = servletContext.getRealPath("./upload");
+		String uploadFolder = servletContext.getRealPath("./resources/upload");
 		logger.info(uploadFolder);
 
 		// 폴더생성
@@ -624,6 +624,26 @@ public class Admin_Controller {
 		model.addAttribute("RBoard_TopList", service.getR_Board_TopList());
 
 		return "/Admin/RBoard_TopList";
+		}
+	
+	
+	// 주간 샐러드 판매량 top 10 출력(GET)
+	@RequestMapping(value = "/Salad_TopList", method = RequestMethod.GET)
+	public String Salad_TopListGET(HttpSession session, Model model) throws Exception {
+
+		logger.info(" C: Salad_TopListGET() 호출");
+
+		String admin_id = (String) session.getAttribute("m_id");
+		// 임시 설정
+		admin_id = "admin";
+		if (admin_id == null || !admin_id.equals("admin")) {
+			return "redirect:/Admin/notAdminAccess";
+		}
+
+		// Criteria 객체 정보 저장(pageStart/pageSize)
+		model.addAttribute("Salad_TopList", service.getSalad_TopList());
+
+		return "/Admin/Salad_TopList";
 		}
 
 }

@@ -2,21 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>커스텀 샐러드</title>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
-</head>
-<body>
+
+<%@ include file="../include/header.jsp" %>
+
 	<h1>도시락 크기 정하기</h1>
 
-	<a href="http://localhost:8088/R_Custom/step1">step1<!-- 도시락 크기 --></a><br>
-	<a href="http://localhost:8088/R_Custom/step2">step2<!-- 야채 --></a><br>
-	<a href="http://localhost:8088/R_Custom/step3">step3<!-- 메인 토핑(치즈,고기,해산물) --></a><br>
-	<a href="http://localhost:8088/R_Custom/step4">step4<!-- 소스 --></a><br>
-	
+	<nav>
+	<a href="http://localhost:8088/R_Custom/step1">step1<!-- 도시락 크기 --></a> >
+	<a href="http://localhost:8088/R_Custom/step2">step2<!-- 야채 --></a> >
+	<a href="http://localhost:8088/R_Custom/step3">step3<!-- 메인 토핑(치즈,고기,해산물) --></a> >
+	<a href="http://localhost:8088/R_Custom/step4">step4<!-- 소스 --></a>
+	</nav>
 	
 	<!-- main 화면일시 step1로 이동 -->
 	<h2>도시락 크기 목록</h2>
@@ -34,7 +30,5 @@
 	
 	<input type="button" value="레시피 등록">
 	<input type="button" value="구매">
-	
-	
-</body>
-</html>
+
+<%@ include file="../include/footer.jsp" %>

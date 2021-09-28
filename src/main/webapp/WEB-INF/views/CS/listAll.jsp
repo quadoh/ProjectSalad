@@ -1,28 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp" %>
 <title>Insert title here</title>
 <script type="text/javascript">
 
-	//ÆäÀÌÁö ½ÇÇà Á¤º¸(result)°¡ ÀÖ´ÂÁö ¾ø´ÂÁö¿¡ µû¶ó¼­ È®ÀÎ¸Ş¼¼Áö
+	//í˜ì´ì§€ ì‹¤í–‰ ì •ë³´(result)ê°€ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ì— ë”°ë¼ì„œ í™•ì¸ë©”ì„¸ì§€
 	//alert('result :'+'${result}');
-	// java -> js ÆäÀÌÁö ÀÌµ¿
+	// java -> js í˜ì´ì§€ ì´ë™
 	
-	// Àü´ŞµÈ µ¥ÀÌÅÍ¸¦ ÀúÀå (elÇ¥Çö½ÄÀÇ °ª)
+	// ì „ë‹¬ëœ ë°ì´í„°ë¥¼ ì €ì¥ (elí‘œí˜„ì‹ì˜ ê°’)
 	var result = '${result}';
 	
 	//alert(result);
-	// ºñ±³ÈÄ ¸Ş¼¼Áö Ãâ·Â
+	// ë¹„êµí›„ ë©”ì„¸ì§€ ì¶œë ¥
 	if(result == 'success'){
-        alert(" ±Û¾²±â Á¤»óÃ³¸® ¿Ï·á! ");
+        alert(" ê¸€ì“°ê¸° ì •ìƒì²˜ë¦¬ ì™„ë£Œ! ");
     }
 	
-	/** °Ô½ÃÆÇ - ÀÛ¼º ÆäÀÌÁö ÀÌµ¿ */
+	/** ê²Œì‹œíŒ - ì‘ì„± í˜ì´ì§€ ì´ë™ */
     function CS_Board_Register(){        
         location.href = "/CS/register";
     }
@@ -31,18 +26,18 @@
 </script>
 </head>
 <body>
-<!-- º¯¼öÀÛ¼º ±ÔÄ¢: ÀÚ±â ´ã´çÆÄÀÏ¸í_°³º°ÆäÀÌÁö_¿ä¼Ò (¿¹½Ã - MJoin_register_btn : È¸¿ø°¡ÀÔ ÀÔ·ÂÆäÀÌÁö ¹öÆ°¸í) -->
+<!-- ë³€ìˆ˜ì‘ì„± ê·œì¹™: ìê¸° ë‹´ë‹¹íŒŒì¼ëª…_ê°œë³„í˜ì´ì§€_ìš”ì†Œ (ì˜ˆì‹œ - MJoin_register_btn : íšŒì›ê°€ì… ì…ë ¥í˜ì´ì§€ ë²„íŠ¼ëª…) -->
 <h2>listAll.jsp</h2>
-<table>
+<table class="table table-bordered table-hover dataTable">
 	<tbody>
 	
 	 <tr>
-	  <th style="width : 10px">¹øÈ£</th>
-	  <th>¹®ÀÇÀ¯Çü</th>
-	  <th>Á¦¸ñ</th>
-	  <th>±Û¾´ÀÌ</th>
-	  <th>³¯Â¥</th>
-	  <th>´äº¯¿©ºÎ</th>
+	  <th style="width : 10px">ë²ˆí˜¸</th>
+	  <th>ë¬¸ì˜ìœ í˜•</th>
+	  <th>ì œëª©</th>
+	  <th>ê¸€ì“´ì´</th>
+	  <th>ë‚ ì§œ</th>
+	  <th>ë‹µë³€ì—¬ë¶€</th>
 	 </tr>
 	 
 	 <c:forEach var="CS_vo" items="${CS_boardList }">
@@ -61,7 +56,7 @@
 	</tbody>	
 </table>
 
-<button type="button" onclick="javascript:CS_Board_Register();">ÀÛ¼ºÇÏ±â</button>
+<button type="button" onclick="javascript:CS_Board_Register();">ì‘ì„±í•˜ê¸°</button>
 
 </body>
-</html>
+<%@ include file="../include/footer.jsp" %>

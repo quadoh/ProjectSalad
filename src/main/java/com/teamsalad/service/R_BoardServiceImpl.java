@@ -1,5 +1,6 @@
 package com.teamsalad.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 import com.teamsalad.persistence.R_BoardDAO;
 
@@ -81,14 +83,18 @@ public class R_BoardServiceImpl implements R_BoardService {
 	
 	//검색한 데이터 불러오기
 	@Override
-	public List<String> getSearchData(String column, String data) throws Exception{
+	public List<recipeBoardVO> getSearchData(String column, String data) throws Exception{
 		List<Integer> rcp_b_nums = dao.r_Board_searchData(column, ("%" + data + "%"));
 		
-		List<String> searchTitle = dao.r_Board_searchNum(rcp_b_nums);
+		if(rcp_b_nums.size() != 0) {
+			List<recipeBoardVO> searchTitle = dao.r_Board_searchNum(rcp_b_nums);
+			
+			System.out.print(" Service Search Data : " + searchTitle.size());
+			
+			return searchTitle;
+		}
 		
-		System.out.print(" Service Search Data : " + searchTitle.size());
-		
-		return searchTitle;
+		return null;
 	}
 	
 	@Override
@@ -122,5 +128,34 @@ public class R_BoardServiceImpl implements R_BoardService {
 		
 		dao.r_Board_modifyReply(reply_b_content, reply_b_num);
 		
+	}
+	
+	@Override
+	public Object getSearchTotal(String table_name, String data) throws Exception {
+		// TODO Auto-generated method stub
+		
+		Object returnData = new ArrayList<Object>();
+		
+		String primary_key = dao.total_getPrimaryKeyName(table_name);
+		
+		System.out.println(" service : primaryKey name :" + primary_key);
+		
+		List<String> columns = dao.total_getDBColumn(table_name);
+		
+		System.out.println(" service : columns count : " + columns.size());
+		
+		List<Integer> search_num = new ArrayList<Integer>();
+		
+		for(String column: columns) {
+			for(int i: dao.total_searchPrimaryKey(table_name, primary_key, column, data)) {
+				search_num.add(i);
+			}
+		}
+		
+		System.out.println(" service : search_num count : " + search_num.size() );
+		
+		returnData = dao.total_searchTotal(table_name, primary_key, search_num);
+		
+		return returnData;
 	}
 }

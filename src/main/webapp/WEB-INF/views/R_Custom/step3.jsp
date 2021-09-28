@@ -2,29 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>커스텀 샐러드</title>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
-</head>
-<body>
-	<h1>토핑 정하기</h1>
 
-	<a href="http://localhost:8088/R_Custom/step1">step1<!-- 도시락 크기 --></a><br>
-	<a href="http://localhost:8088/R_Custom/step2">step2<!-- 야채 --></a><br>
-	<a href="http://localhost:8088/R_Custom/step3">step3<!-- 메인 토핑(치즈,고기,해산물) --></a><br>
-	<a href="http://localhost:8088/R_Custom/step4">step4<!-- 소스 --></a><br>
+<%@ include file="../include/header.jsp" %>
+
+	<h1>토핑 정하기</h1>
 	
+	<nav>
+	<a href="http://localhost:8088/R_Custom/step1">step1<!-- 도시락 크기 --></a> >
+	<a href="http://localhost:8088/R_Custom/step2">step2<!-- 야채 --></a> >
+	<a href="http://localhost:8088/R_Custom/step3">step3<!-- 메인 토핑(치즈,고기,해산물) --></a> >
+	<a href="http://localhost:8088/R_Custom/step4">step4<!-- 소스 --></a>
+	</nav>
 	
 	<h2>고기 목록</h2>
 	<!-- 재료DB에서 카테고리 2(고기) 받아오기 -->
-	<c:forEach var="vo" items="${ingredientList }">
-	  <p>${vo.igdt_name }</p>
-	  <p><input type="number" name="amount" value="1">개</p>
-	  <p>${vo.igdt_price }</p>
-	  <p><input type="button" name="add" value="추가" onclick="Cookies.set(${vo.igdt_name}, ${vo.igdt_price })"></p>
+	<c:forEach var="vo" varStatus="status" items="${ingredientList }">
+	  <form name="igdt${status.count}" action="">
+	    <p>${vo.igdt_name }</p>
+	    <p>${vo.igdt_price }</p>
+	    <input type="hidden" name="igdt_name" value="${vo.igdt_name }">
+	    <input type="hidden" name="igdt_price" value="${vo.igdt_price }">
+	    <input type="radio" name="isOn" value="add">추가
+	    <input type="radio" name="isOn" value="sub">빼기
+	    <!-- <input type="button" class="add" value="추가"> -->
+	  </form>
 	</c:forEach>
 	
 	
@@ -37,7 +38,5 @@
 	
 	<input type="button" value="레시피 등록">
 	<input type="button" value="구매">
-	
-	
-</body>
-</html>
+
+<%@ include file="../include/footer.jsp" %>

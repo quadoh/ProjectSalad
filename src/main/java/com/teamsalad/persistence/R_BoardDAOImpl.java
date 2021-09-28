@@ -1,5 +1,7 @@
 package com.teamsalad.persistence;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -261,20 +263,93 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 		
 		logger.info(" DAO : board columns " + vo);
 		
+		System.out.println("searchData : " + vo.size());
+		
 		return vo;
 	}
 	
 	@Override
-	public List<String> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception {
+	public List<recipeBoardVO> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception {
 		// TODO Auto-generated method stub
 		
 		Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
 		map.put("rcp_b_nums", rcp_b_nums);
 		
-		List<String> vo = sqlSession.selectList(namespace + ".R_Board_searchNum", map);
+		List<recipeBoardVO> vo = sqlSession.selectList(namespace + ".R_Board_searchNum", map);
 		
 		logger.info(" DAO : 검색 결과 제목 -> " + vo.size());
 		
 		return vo;
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// 여기부터는 다른 DAO를 만드는것도 좋다고 생각됨
+	//
+	////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 선택 테이블의 기본 키(PK) 불러오기
+	public String total_getPrimaryKeyName(String table_name) throws Exception{
+		
+		String primaryKeyName = sqlSession.selectOne(namespace + ".Total_getPrimaryKeyName", table_name);
+		
+		logger.info(" DAO : getPrimaryKeyName 결과 확인 : " + primaryKeyName);
+		
+		return primaryKeyName;
+	}
+	
+	// 선택 테이블의 모든 컬럼 불러오기(이 부분은 사라질 수 있음 나중에 예외 설명함)
+	// 현재는 String으로만 검색하기 때문에 int는 검색 안될 수 있음
+	// 비밀번호 같은 검색 되면 안되는 컬럼은 제외해야함
+	// 필요한 경우 따로 각 테이블마다 String 리스트를 만들어 검색도 가능함.
+	public List<String> total_getDBColumn(String table_name) throws Exception{
+
+		System.out.println(" DAO : getDBColumn 시작: ");
+		
+		List<String> columns = sqlSession.selectList(namespace + ".Total_getDBColumn", table_name);
+		
+		System.out.print(" DAO : getDBColumn 결과 확인 : ");
+		for(String s : columns)
+			System.out.print(s + ", ");
+		
+		System.out.println("");
+		
+		return columns;
+	}
+	
+	// 선택 테이블의 해당 컬럼을 검색하여 기본 키값 가져오기
+	public List<Integer> total_searchPrimaryKey(String table_name, String primary_key, String column, String data) throws Exception{
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("table_name", table_name);
+		map.put("primary_key", primary_key);
+		map.put("column", column);
+		map.put("data", ("%"+data+"%"));
+		
+		List<Integer> primaryKeys = sqlSession.selectList(namespace + ".Total_searchPrimaryKey", map);
+		
+		logger.info(" DAO : searchPrimaryKey 검색된 갯수(중복 포함) : " + primaryKeys.size());
+		
+		return primaryKeys;
+	}
+	
+	// 검색한 기본키로 해당 테이블의 모든 정보 가져오기
+	public Object total_searchTotal(String table_name, String primary_key, List<Integer> search_num) throws Exception{
+		
+		logger.info(" DAO : total_searchTotal 시작");
+		System.out.println("DAO : total_searchTotal 시작");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("table_name", table_name);
+		map.put("primary_key", primary_key);
+		map.put("search_num", search_num);
+		
+		Object searchTotal = sqlSession.selectList(namespace + ".Total_search"+table_name, map);
+
+		logger.info(" DAO : total_searchTotal 끝 길이 : " + searchTotal);
+		System.out.println("DAO : total_searchTotal 끝 길이 : " + searchTotal);
+		
+		return searchTotal;
 	}
 }

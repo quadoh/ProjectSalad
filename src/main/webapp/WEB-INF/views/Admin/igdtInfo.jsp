@@ -40,7 +40,7 @@ text-align: center;
    					<td>${ivo.igdt_name }</td>
    					<td>${ivo.igdt_price }</td>
    					<!-- 메인 이미지 파일  -->
-   					<td>${ivo.igdt_main_img}<img src="C:upload\${ivo.igdt_main_img}"/></td>
+   					<td><img style = "width: 70px; height: 35px;" src="${pageContext.request.contextPath}/resources/upload/${ivo.igdt_main_img}"/></td>
    					<!-- 보조 이미지 파일 -->
    					<td>${ivo.igdt_sub_img }</td>
    					

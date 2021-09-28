@@ -334,7 +334,7 @@
 	              </a>
 	              <ul class="treeview-menu">
 	                <li><a href="/Admin/RBoard_TopList"><i class="fa fa-circle-o"></i> 주간 레시피 TOP 10 </a></li>
-	                <li><a href="/resources/admin/index2.html"><i class="fa fa-circle-o"></i> 주간 샐러드 TOP 10 </a></li>
+	                <li><a href="/Admin/Salad_TopList"><i class="fa fa-circle-o"></i> 주간 샐러드 TOP 10 </a></li>
 	              </ul>
 	            </li>
             <li class="header">LABELS</li>

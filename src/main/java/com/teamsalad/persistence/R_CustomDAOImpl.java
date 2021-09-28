@@ -32,4 +32,18 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		return sqlSession.selectList(namespace+".list",category);
 	}
 	
+	@Override
+	public void newCustom(String id) throws Exception {
+		// id에 해당하는 커스텀이 없을경우 자동 실행
+		logger.info(" newCustom() 호출 ");
+		
+		//mapper에 동작 호출
+	}
+	
+	@Override
+	public void addCustom(int num) throws Exception {
+		logger.info(" addCustom() 호출 ");
+		
+		//mapper에 동작 호출
+	}
 }

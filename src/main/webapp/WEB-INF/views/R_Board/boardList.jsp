@@ -354,6 +354,7 @@
                                 <a href="#">2</a>
                                 <a href="#">3</a>
                                 <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                                <a href="#" style="width: 50px;">글 쓰기</a>
                             </div>
                         </div>
                     </div>

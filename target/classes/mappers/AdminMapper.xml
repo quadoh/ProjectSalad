@@ -268,6 +268,23 @@
     	m_coupon = #{m_coupon} 
     	where m_id = #{m_id}
     </update>
+    
+    <!-- 판매 성향 분석  -->
+    
+    <!-- 주간 인기 레시피 게시판 list -->
+	<select id="rBoardTopList" resultType="recipeBoardVO">
+	   select * from recipe_board 
+	   where rcp_b_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW() 
+	   order by rcp_b_like_count desc 
+	   limit 10	  
+	</select>
+	
+	<!-- 주간 인기 판매 샐러드 list -->
+	<select id="saladTopList" resultType="recipeVO">
+	   select * from salad_recipe 
+	   order by rcp_week_count desc 
+	   limit 10	  
+	</select>
 
     
  </mapper>

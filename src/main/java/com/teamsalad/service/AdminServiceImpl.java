@@ -12,6 +12,7 @@ import com.teamsalad.domain.ingredientVO;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
+import com.teamsalad.domain.recipeVO;
 import com.teamsalad.persistence.AdminDAO;
 
 @Service
@@ -321,5 +322,14 @@ public class AdminServiceImpl implements AdminService {
 		return adao.getR_Board_TopList();
 		
 	}
+	
+	// 샐러드 주간 판매량 탑텐 조회
+	@Override
+	public List<recipeVO> getSalad_TopList() throws Exception {
+		
+		System.out.println("S : getSalad_TopList() 호출! ");
+		
+		return adao.getSalad_TopList();
 
+	}
 }

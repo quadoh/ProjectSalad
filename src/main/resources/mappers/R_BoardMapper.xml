@@ -41,6 +41,23 @@
      	<collection property="recipe" resultMap="recipe"/>
      </resultMap>
      
+<!--      필요 테이블 선택 가능 -->
+	 <resultMap type="Object" id="selectClass">
+	 	<discriminator javaType="String" column="table_name">
+	 		<case value="customer_board" resultType="customerBoardVO"/>
+	 		<case value="recipe_board" resultType="recipeBoardVO"/>
+	 		<case value="review_board" resultType="reviewBoardVO"/>
+	 		<case value="salad_ingredient" resultType="ingredientVO"/>
+	 		<case value="salad_recipe" resultType="recipeVO"/>
+	 	</discriminator>
+	 </resultMap>
+	 
+	 <resultMap type="recipeBoardVO" id="searchRecipeBoard">
+     	<id property="rcp_b_num" column="num"/>
+     	<id property="rcp_b_title" column="title"/>
+     </resultMap>
+<!--      필요 테이블 선택 가능 -->
+     
      <insert id="R_Board_regist">
      	insert into recipe_board (m_id, rcp_num, rcp_b_title)
      	values (#{m_id}, #{rcp_num}, #{rcp_b_title})
@@ -157,8 +174,8 @@
      	where ${column} like #{data}
      </select>
      
-     <select id="R_Board_searchNum" resultType="String">
-     	select rcp_b_title
+     <select id="R_Board_searchNum" resultType="recipeBoardVO">
+     	select *
      	from recipe_board
      	where rcp_b_num in 
      	<foreach collection="rcp_b_nums" item="num" index="index" open="(" separator="," close=")"  >
@@ -166,4 +183,85 @@
      	</foreach>
      </select>
      
+     
+<!-- 필요 테이블 검색 기능 -->
+     <select id="Total_getPrimaryKeyName" resultType="String">
+	    SELECT COLUMN_NAME
+		FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+		WHERE TABLE_NAME = #{table_name}
+		AND CONSTRAINT_NAME = 'PRIMARY';
+     </select>
+     
+     <select id="Total_getDBColumn" resultType="String">
+     	SELECT column_name as 'columns' FROM information_schema.columns
+		WHERE table_name=#{table_name}
+     </select>
+     
+     <select id="Total_searchPrimaryKey" resultType="int">
+     	select ${primary_key}
+     	from ${table_name}
+     	where ${column} like #{data}
+     </select>
+     
+<!--      테이블마다 이 부분만 추가하면 될듯함 -->
+<!-- customer_board 검색 -->
+     <select id="Total_searchcustomer_board" resultType="customerBoardVO">
+     	select *
+     	from ${table_name}
+     	where ${primary_key} in 
+     	<foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
+     </select>
+     
+<!--      recipe_board 검색 -->
+     <select id="Total_searchrecipe_board" resultType="recipeBoardVO">
+     	select *
+     	from ${table_name}
+     	where ${primary_key} in 
+     	<foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
+     </select>
+     
+<!--      review_board 검색 -->
+     <select id="Total_searchreview_board" resultType="reviewBoardVO">
+     	select *
+     	from ${table_name}
+     	where ${primary_key} in 
+     	<foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
+     </select>
+     
+<!--      salad_ingredient 검색 -->
+     <select id="Total_searchsalad_ingredient" resultType="ingredientVO">
+     	select *
+     	from ${table_name}
+     	where ${primary_key} in 
+     	<foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
+     </select>
+     
+<!--      salad_recipe 검색 -->
+     <select id="Total_searchsalad_recipe" resultType="recipeVO">
+     	select *
+     	from ${table_name}
+     	where ${primary_key} in 
+     	<foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+     		#{num}
+     	</foreach>
+     </select>
+     
+    <!-- 회원정보 검색  -->
+     <select id="Total_searchtbl_member" resultType="memberVO">
+        select *
+        from ${table_name}
+        where ${primary_key} in 
+        <foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+           #{num}
+        </foreach>
+     </select>
+<!-- 필요 테이블 검색 기능 -->
  </mapper>

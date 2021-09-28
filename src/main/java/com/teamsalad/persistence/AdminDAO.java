@@ -8,6 +8,7 @@ import com.teamsalad.domain.ingredientVO;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
+import com.teamsalad.domain.recipeVO;
 
 public interface AdminDAO {
 	
@@ -119,4 +120,9 @@ public interface AdminDAO {
 
 	// 인기 레시피 게시판 탑텐 조회
 	public List<recipeBoardVO> getR_Board_TopList() throws Exception;
+	
+	// 샐러드 판매량 탑텐 조회
+	public List<recipeVO> getSalad_TopList() throws Exception;
+	
+	
 }

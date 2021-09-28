@@ -64,5 +64,27 @@ public interface R_BoardDAO {
 	// 가져온 컬럼 데이터로 데이터 검색하기
 	public List<Integer> r_Board_searchData(String column, String data) throws Exception;
 	
-	public List<String> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception;
+	public List<recipeBoardVO> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception;
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// 여기부터는 다른 DAO를 만드는것도 좋다고 생각됨
+	//
+	////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 선택 테이블의 기본 키(PK) 불러오기
+	public String total_getPrimaryKeyName(String table_name) throws Exception;
+	
+	// 선택 테이블의 모든 컬럼 불러오기(이 부분은 사라질 수 있음 나중에 예외 설명함)
+	// 현재는 String으로만 검색하기 때문에 int는 검색 안될 수 있음
+	// 비밀번호 같은 검색 되면 안되는 컬럼은 제외해야함
+	// 필요한 경우 따로 각 테이블마다 String 리스트를 만들어 검색도 가능함.
+	public List<String> total_getDBColumn(String table_name) throws Exception;
+	
+	// 선택 테이블의 해당 컬럼을 검색하여 기본 키값 가져오기
+	public List<Integer> total_searchPrimaryKey(String table_name, String primary_key, String columns, String data) throws Exception;
+	
+	// 검색한 기본키로 해당 테이블의 모든 정보 가져오기
+	public Object total_searchTotal(String table_name, String primary_key, List<Integer> search_num) throws Exception;
+	
 }

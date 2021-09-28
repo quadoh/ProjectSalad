@@ -3,6 +3,7 @@ package com.teamsalad.service;
 import java.util.List;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 
 public interface R_BoardService {
@@ -26,7 +27,7 @@ public interface R_BoardService {
 	public List<BoardMemberVO> getWeeklyPopular() throws Exception;
 	
 	//검색한 데이터 불러오기
-	public List<String> getSearchData(String column, String data) throws Exception;
+	public List<recipeBoardVO> getSearchData(String column, String data) throws Exception;
 	
 	// 게시물 댓글들 불러오기
 	public List<replyVO> getBoardReply(int rcp_b_num) throws Exception;
@@ -40,5 +41,6 @@ public interface R_BoardService {
 	// 댓글 수정하기
 	public void modifyReply(int reply_b_num, String reply_b_content) throws Exception;
 	
-	
+	// 선택한 테이블에서 데이터 검색하기
+	public Object getSearchTotal(String table_name, String data) throws Exception;
 }

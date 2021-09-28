@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.teamsalad.mapper.PaymentMapper">
+ 
+ <!-- 주문 정보 -->
+<insert id="orderInfo">
+ insert into tbl_order(order_num, m_Id, rcp_num, coupon_id, order_pay_num, rcp_name, order_name, order_date, order_receive_name,
+                       order_receive_phone, order_receive_zip, order_receive_addr1, order_receive_addr2, order_type, order_amount, order_ship_price, order_total_price, order_status)
+     values(#{order_num}, #{m_Id}, #{rcp_num}, #{coupon_id}, #{order_pay_num}, #{rcp_name}, #{order_name}, #{order_date}, #{order_receive_name},
+            #{order_receive_phone}, #{order_receive_zip}, #{order_receive_addr1}, #{order_receive_addr2}, #{order_type}, #{order_amount}, #{order_ship_price}, #{order_total_price}, #{order_status})
+</insert>
+     
+ </mapper>

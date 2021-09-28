@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +28,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/saladmall/css/main.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/saladmall/css/style.css" type="text/css">
     
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+	
+	 <!-- jQuery 2.1.4 -->
+    <script src="/resources/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	
 </head>
 
 <body>
