@@ -309,6 +309,17 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 		
 		List<String> columns = sqlSession.selectList(namespace + ".Total_getDBColumn", table_name);
 		
+		if(table_name.equals("tbl_member")) {
+			columns.remove(columns.indexOf("m_pw"));
+		}else if(table_name.equals("recipe_board")) {
+			columns.remove(columns.indexOf("rcp_b_img1"));
+			columns.remove(columns.indexOf("rcp_b_img2"));
+			columns.remove(columns.indexOf("rcp_b_img3"));
+			columns.remove(columns.indexOf("rcp_b_thumbnail"));
+		}else if(table_name.equals("")) {
+			columns.remove(columns.indexOf(""));
+		}
+		
 		System.out.print(" DAO : getDBColumn 결과 확인 : ");
 		for(String s : columns)
 			System.out.print(s + ", ");

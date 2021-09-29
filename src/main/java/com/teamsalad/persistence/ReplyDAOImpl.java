@@ -23,15 +23,18 @@ public class ReplyDAOImpl implements ReplyDAO {
 	private static final Logger logger = LoggerFactory.getLogger(ReplyDAOImpl.class);
 	
 	private static final String namespace = "com.teamsalad.mapper.ReplyMapper";
-
+	
+	
+	// 댓글 목록
 	@Override
-	public List<replyVO> replyList(Integer reply_b_main_num) throws Exception {
+	public List<replyVO> list(Integer reply_b_main_num) throws Exception {
 		
 		logger.info(" DAO : replyList(Integer reply_b_main_num) 호출 " );
 		
 		return sqlSession.selectList(namespace + ".list", reply_b_main_num) ;
 	}
-
+	
+	// 댓글 등록
 	@Override
 	public void create(replyVO rvo) throws Exception {
 		
@@ -40,7 +43,8 @@ public class ReplyDAOImpl implements ReplyDAO {
 		sqlSession.insert(namespace + ".create", rvo) ;
 		
 	}
-
+	
+	// 댓글 수정
 	@Override
 	public void update(replyVO rvo) throws Exception {
 		
@@ -48,9 +52,9 @@ public class ReplyDAOImpl implements ReplyDAO {
 		
 		sqlSession.insert(namespace + ".update", rvo) ;
 		
-		
 	}
-
+	
+	// 댓글 삭제
 	@Override
 	public void delete(Integer reply_b_num) throws Exception {
 		
@@ -63,7 +67,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	
 	// 댓글 페이징 처리
 	@Override
-	public List<replyVO> replyListPaging(Integer reply_b_main_num, Criteria criteria) throws Exception {
+	public List<replyVO> listPaging(Integer reply_b_main_num, Criteria criteria) throws Exception {
 		
 		Map<String, Object> paramMap = new HashMap<>(); 
 		paramMap.put("reply_b_main_num", reply_b_main_num); 
@@ -76,7 +80,6 @@ public class ReplyDAOImpl implements ReplyDAO {
 	// 댓글 총 갯수 계산
 	@Override
 	public int countReplies(Integer reply_b_main_num) throws Exception {
-		
 		return sqlSession.selectOne(namespace + ".countReplies", reply_b_main_num);
 	}
 

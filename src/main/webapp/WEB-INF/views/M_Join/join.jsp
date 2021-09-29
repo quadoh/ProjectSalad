@@ -365,13 +365,13 @@
 				</div>
 			</div>
 			<div class="address_wrap">
-				<div class="address_name">우편번호</div>
+				<div class="address_name">주소</div>
 				<div class="address_input_1_wrap">
 					<div class="address_input_1_box">
 						<input class="address_input_1" name="m_addr1" onclick="addrclick()">
 					</div>
 					<div class="address_button">
-						<span>주소</span>
+						<span>주소검색</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -383,7 +383,7 @@
 				<span class="final_addr_ck">주소를 입력해주세요.</span>
 			</div>
 			<div class="join_button_wrap">
-				<input type="button" class="join_button" value="가입하기">
+				<input type="submit" class="join_button" value="가입하기">
 			</div>
 		</div>
 	</form>
@@ -538,12 +538,6 @@ $('.pwck_input').on("propertychange change keyup paste input", function(){
     }        
     
 });  
-
-
-
-
-
-
 
 
 </script>

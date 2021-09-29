@@ -1,6 +1,7 @@
 package com.teamsalad.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.teamsalad.domain.Criteria;
+import com.teamsalad.domain.PageMaker;
 import com.teamsalad.domain.customerBoardVO;
 import com.teamsalad.service.CSService;
 
@@ -25,19 +28,22 @@ public class CS_Controller {
 	@Inject
 	private CSService CS_service;
 	
-	// 게시판 글 전체 조회
+	// 게시판 글 전체 조회 페이징(GET)
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public void listALLGET(Model model, @ModelAttribute("result") String result) throws Exception{
-		
-		logger.info(" C: listALLGET() 호출 -> view 페이지 이동");
-		
-		// 글쓰기 페이지에서 전달한 정보를 저장후 출력
-		logger.info(" 페이지 처리 결과 : "+result);
-		
-		// 서비스 동작 호출
-		// DB에서 가져온 글 정보를 view 페이지로 전달
-		model.addAttribute("CS_boardList",CS_service.listALL());
-	
+	public String listALLGET(Criteria cri, Model model, @ModelAttribute("result") String result) throws Exception {
+
+			logger.info(" C: listALLGET() 호출 -> view 페이지 이동");
+
+			// 페이징처리 정보생성 (하단부)
+			PageMaker pm = new PageMaker();
+			pm.setCri(cri);
+			pm.setTotalCount(CS_service.countCSBoard(cri));
+
+			// Criteria 객체 정보 저장(pageStart/pageSize)
+			model.addAttribute("listAll", CS_service.listCri(cri));
+			model.addAttribute("pm", pm);
+
+			return "/CS/listAll";
 	}
 	
 	// 글쓰기(GET)
@@ -62,15 +68,18 @@ public class CS_Controller {
 		
 	// 글읽기(GET)
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public void readGET(Integer customer_b_num, Model model ) throws Exception{
+	public void readGET(HttpSession session ,Integer customer_b_num, Model model ) throws Exception{
 		
 		logger.info(" C : readGET() 호출! ");
+		
+		String id = (String) session.getAttribute("m_id");
 				
 		// 서비스객체 - 글번호에 해당하는 정보를 가져오는 동작
 		customerBoardVO CS_vo = CS_service.read(customer_b_num);		
 		
 		// DB에서 가져온 데이터를 저장
 		model.addAttribute("CS_vo", CS_vo);
+		model.addAttribute("session_id", id);
 		
 	}
 	
@@ -95,7 +104,7 @@ public class CS_Controller {
 	}
 	
 	// 게시판 글 삭제
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String deleteGET(Integer customer_b_num) throws Exception{
 		
 		// 서비스 객체안에 삭제처리 동작

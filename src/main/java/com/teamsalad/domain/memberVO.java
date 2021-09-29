@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class memberVO {
 	
+	private int m_seq;
 	private String m_id;
 	private String m_pw;
 	private String m_name;
@@ -19,6 +20,16 @@ public class memberVO {
 	private int m_warning;
 	private String m_coupon;
 	
+	
+	
+	public int getM_seq() {
+		return m_seq;
+	}
+
+	public void setM_seq(int m_seq) {
+		this.m_seq = m_seq;
+	}
+
 	public String getM_id() {
 		return m_id;
 	}
@@ -105,13 +116,15 @@ public class memberVO {
 	public void setM_coupon(String m_coupon) {
 		this.m_coupon = m_coupon;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "memberVO [m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_email=" + m_email + ", m_zip="
-				+ m_zip + ", m_addr1=" + m_addr1 + ", m_addr2=" + m_addr2 + ", m_phone=" + m_phone + ", m_regdate="
-				+ m_regdate + ", m_grade=" + m_grade + ", m_totalAmount=" + m_totalAmount + ", m_attendance="
-				+ m_attendance + ", m_warning=" + m_warning + ", m_coupon=" + m_coupon + "]";
+		return "memberVO [m_seq=" + m_seq + ", m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_email="
+				+ m_email + ", m_zip=" + m_zip + ", m_addr1=" + m_addr1 + ", m_addr2=" + m_addr2 + ", m_phone="
+				+ m_phone + ", m_regdate=" + m_regdate + ", m_grade=" + m_grade + ", m_totalAmount=" + m_totalAmount
+				+ ", m_attendance=" + m_attendance + ", m_warning=" + m_warning + ", m_coupon=" + m_coupon + "]";
 	}
+	
+	
 
 }

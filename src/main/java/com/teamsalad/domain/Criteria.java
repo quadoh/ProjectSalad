@@ -9,7 +9,7 @@ public class Criteria {
 	// 한 페이지 당 보여질 게시물 갯수
 	private int pageAmount;
 	
-	// 스킬 할 게시물 수
+	// 스킵 할 게시물 수
 	private int skip;
 	
 	// 기본 생성자

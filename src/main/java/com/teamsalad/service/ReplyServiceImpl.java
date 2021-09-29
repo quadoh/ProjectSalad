@@ -17,11 +17,11 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyDAO rdao;
 
 	@Override
-	public List<replyVO> replyList(Integer reply_b_main_num) throws Exception {
+	public List<replyVO> list(Integer reply_b_main_num) throws Exception {
 		
 		System.out.println("S : replyList(Integer reply_b_main_num) 호출");
 		
-		return rdao.replyList(reply_b_main_num);
+		return rdao.list(reply_b_main_num);
 	}
 
 	@Override
@@ -53,10 +53,10 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	// 댓글 페이징 처리
 	@Override
-	public List<replyVO> replyListPaging(Integer reply_b_main_num, Criteria criteria) throws Exception {
+	public List<replyVO> listPaging(Integer reply_b_main_num, Criteria criteria) throws Exception {
 			
 		System.out.println("S : replyListPaging(Integer reply_b_main_num, Criteria criteria) 호출");
-		return rdao.replyListPaging(reply_b_main_num, criteria);
+		return rdao.listPaging(reply_b_main_num, criteria);
 	}
 	
 	
@@ -65,7 +65,6 @@ public class ReplyServiceImpl implements ReplyService {
 	public int countReplies(Integer reply_b_main_num) throws Exception {
 	
 		System.out.println("S : countReplies(Integer reply_b_main_num) 호출");
-		
 		return rdao.countReplies(reply_b_main_num);
 	}
 	

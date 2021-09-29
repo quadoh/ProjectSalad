@@ -15,8 +15,8 @@
 
 	<!-- 댓글 쓰기 -->
 	<insert id="create">
-		insert into tbl_reply (m_id, reply_b_type, reply_b_main_num, reply_b_content) 
-		values ( #{m_id}, #{reply_b_type}, #{reply_b_main_num}, #{reply_b_content})
+		insert into tbl_reply (reply_m_id, reply_b_type, reply_b_main_num, reply_b_content, reply_b_ip ) 
+		values ( #{reply_m_id}, #{reply_b_type}, #{reply_b_main_num}, #{reply_b_content}, #{reply_b_ip})
 	</insert>
 
 	<!-- 댓글 수정 -->
@@ -40,11 +40,11 @@
 		from tbl_reply 
 		where reply_b_main_num = #{reply_b_main_num} 
 		order by reply_b_num 
-		limit #{skip},#{pageAmount}
+		limit #{criteria.skip}, #{criteria.pageAmount}
 	</select>
 
 	<select id="countReplies" resultType="int"> 
-		select count(reply_b_main_num) 
+		select count(reply_b_num) 
 		from tbl_reply 
 		where reply_b_main_num = #{reply_b_main_num} 
 	</select>

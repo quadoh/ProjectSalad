@@ -2,13 +2,20 @@ package com.teamsalad.persistence;
 
 import java.util.List;
 
+import com.teamsalad.domain.Criteria;
 import com.teamsalad.domain.customerBoardVO;
 
 public interface CSDAO {
 	
 	// 게시판 글 전체 조회
 	public List<customerBoardVO> listALL() throws Exception;
-		
+	
+	// 게시판 페이징 처리 조회
+	public List<customerBoardVO> listCri(Criteria cri) throws Exception;
+	
+	// 게시판 글 전체 목록 조회
+	public int countCSBoard(Criteria cri) throws Exception;
+	
 	// 게시판 글 쓰기 (CRUD - C)
 	public void create(customerBoardVO CS_vo) throws Exception;
 	

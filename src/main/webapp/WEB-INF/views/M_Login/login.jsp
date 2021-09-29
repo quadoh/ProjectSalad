@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <meta charset="UTF-8">
 <title>SaladMall | LoginPage</title>
 <meta
@@ -71,6 +73,51 @@
 			<!-- /.box-body -->
 			<div class="box-footer">
 				<a class="g-signin2" id="googleLogin" onclick="init();" data-theme="dark"></a>
+				
+				<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+				<div id="naver_id_login"></div>
+				<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+				
+				
+				<!-- 네이버아디디로로그인 초기화 Script -->
+				<script type="text/javascript">
+					var naver_id_login = new naver_id_login("4JoVEl8bh_pfo_aFwcDO", "http://localhost:8088/M_Login/main");
+					var state = naver_id_login.getUniqState();
+					naver_id_login.setButton("green", 2,40);
+					naver_id_login.setDomain(".service.com");
+					naver_id_login.setState(state);
+					naver_id_login.setPopup();
+					naver_id_login.init_naver_id_login();
+				</script>
+				<!-- // 네이버아이디로로그인 초기화 Script -->
+			
+				
+				<!-- 카카오로그인 -->
+				<a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height: 40px;width: auto;"></a>
+				<script type="text/javascript">
+				
+				// 51b20c14e1ac4e264f7d1a93cc236b47
+				window.Kakao.init("51b20c14e1ac4e264f7d1a93cc236b47");
+				
+				function kakaoLogin() {
+					window.Kakao.Auth.login({
+						scope:'profile_nickname,account_email',
+						success: function(authObj){
+							console.log(authObj);
+							window.Kakao.API.request({
+								url:'/v2/user/me', //현재로그인한사용자의정보
+								success: res => {
+									const kakao_account = res.kakao_account;
+									console.log(kakao_account);
+								}
+							});
+						}
+					});
+				}
+				</script><br>
+				<!-- 카카오로그인 -->
+				
+				
 				<button type="button" class="btn btn-default" onclick="signOut();">google sign out</button>
 				<button type="button" class="btn btn-default">아이디/비밀번호 찾기</button>
 				<input type="button" class="btn btn-default" value="로그인" id="Mlogin_submit_Btn" name="Mlogin_submit_Btn">
@@ -184,5 +231,19 @@
 			auth2.disconnect();
  }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

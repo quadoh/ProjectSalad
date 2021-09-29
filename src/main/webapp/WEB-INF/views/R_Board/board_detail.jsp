@@ -463,11 +463,10 @@
 				$.getJSON('searchData', {searchData:$("#searchText").val()}, function(data){
 					$.each(data, function(index, title){
 						console.log(index);
-						$("#autoText").append('<li><a href="./board_detail?rcp_b_num=' + title.rcp_b_num + '">'+title.rcp_b_title+'</a></li>');
+						$("#autoText").append('<li><a href="../R_Board/board_detail?rcp_b_num=' + title.rcp_b_num + '">'+title.rcp_b_title+'</a></li>');
 					});
 				});
 			});
-			$
 		});
 	</script>
 

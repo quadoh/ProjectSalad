@@ -263,5 +263,15 @@
            #{num}
         </foreach>
      </select>
+     
+     <!-- 회원정보 검색  -->
+     <select id="Total_searchtbl_order" resultType="orderVO">
+        select *
+        from ${table_name}
+        where ${primary_key} in 
+        <foreach collection="search_num" item="num" index="index" open="(" separator="," close=")"  >
+           #{num}
+        </foreach>
+     </select>
 <!-- 필요 테이블 검색 기능 -->
  </mapper>

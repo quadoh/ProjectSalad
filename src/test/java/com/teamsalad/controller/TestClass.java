@@ -12,10 +12,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.teamsalad.domain.Criteria;
+import com.teamsalad.domain.customerBoardVO;
 import com.teamsalad.domain.ingredientVO;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.persistence.AdminDAO;
+import com.teamsalad.persistence.CSDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -28,6 +30,9 @@ public class TestClass {
 		
 		@Inject
 		AdminDAO adao;
+		
+		@Inject
+		CSDAO csdao;
 		
 		// 멤버 데이터 삽입
 		//@Test
@@ -122,6 +127,27 @@ public class TestClass {
 			ivo.setIgdt_size("20g");
 						
 			adao.insertIngredient(ivo);
+		}
+		
+	}
+	
+	// 고객센터 데이터 삽입
+	@Test
+	public void CSBoardCreate() throws Exception{
+		
+		for (int i=10 ; i<= 100 ; i++) {
+			
+			customerBoardVO cvo = new customerBoardVO();
+			
+			cvo.setCustomer_b_content("내용입니다" + i);
+			cvo.setCustomer_b_file("default");
+			cvo.setCustomer_b_status(((int)(Math.random()*2)+1));
+			cvo.setCustomer_b_title("제목입니다"+i);
+			cvo.setCustomer_b_type(((int)(Math.random()*4)+1) + "");
+			cvo.setM_id("아이디"+i);
+			cvo.setOrder_num(i);
+						
+			csdao.create(cvo);
 		}
 		
 	}

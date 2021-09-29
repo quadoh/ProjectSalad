@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.teamsalad.domain.Criteria;
 import com.teamsalad.domain.customerBoardVO;
+import com.teamsalad.domain.memberVO;
 import com.teamsalad.persistence.CSDAO;
 
 @Service
@@ -26,6 +28,28 @@ public class CSServiceImpl implements CSService {
 		logger.info(" S : listALL() 호출 -> DAO-");
 		logger.info(" S : DAO 처리 완료! 정보 저장후 컨트롤러 이동");
 		return bdao.listALL();
+	}
+	
+	// 게시판 페이징 리스트
+	@Override
+	public List<customerBoardVO> listCri(Criteria cri) throws Exception {
+		
+		logger.info(" S : listCri() 호출 -> DAO-");
+
+		List<customerBoardVO> listCri = bdao.listCri(cri);
+
+		return listCri;
+	}
+	
+	// 게시판 총 글 수 계산
+	@Override
+	public int countCSBoard(Criteria cri) throws Exception {
+		
+		logger.info(" S : countCSBoard() 호출 -> DAO-");
+
+		int countCSBoard = bdao.countCSBoard(cri);
+
+		return countCSBoard;
 	}
 	
 	// 게시판 글쓰기
@@ -59,7 +83,8 @@ public class CSServiceImpl implements CSService {
 		bdao.modify(CS_vo);
 		
 	}
-
+	
+	// 게시판 특정 글 삭제
 	@Override
 	public void delete(Integer customer_b_num) throws Exception {
 		
@@ -68,6 +93,10 @@ public class CSServiceImpl implements CSService {
 		bdao.delete(customer_b_num);
 		
 	}
+
+	
+	
+	
 	
 	
 }

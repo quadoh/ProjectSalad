@@ -1,5 +1,6 @@
 package com.teamsalad.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.memberVO;
+import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
+import com.teamsalad.domain.searchVO;
 import com.teamsalad.service.R_BoardService;
 
 @Controller
@@ -72,6 +76,8 @@ public class R_Board_Controller {
 //	좋아요 체크 후 적용하기
 	@RequestMapping(value = "/likeCheck", method = RequestMethod.GET)
 	public String likeCheck(@RequestParam("rcp_b_num")int rcp_b_num, HttpSession session) throws Exception {
+		session.setAttribute("id", "admin");
+		
 		String m_id = (String)session.getAttribute("id");
 		
 		System.out.println("likeCheck 시작");
@@ -116,13 +122,62 @@ public class R_Board_Controller {
 	}
 	
 	@RequestMapping(value = "searchTotal/{table}")
-	public @ResponseBody Object searchTotal(@PathVariable String table, String searchData) throws Exception{
+	public @ResponseBody List<searchVO> searchTotal(@PathVariable String table, String searchData) throws Exception{
 		
 		System.out.println("검색 데이터!!!!!!!!!!!!!!!!! : " + searchData);
 		System.out.println("검색 테이블!!!!!!!!!!!!!!!!! : " + table);
 		
 		Object searchTitle = service.getSearchTotal(table, searchData);
 		
-		return searchTitle;
+		List<searchVO> s = objectToSearchVO(table, searchTitle);
+		
+		return s;
+	}
+	
+	private List<searchVO> objectToSearchVO(String table, Object o){
+		List<searchVO> list = new ArrayList<searchVO>();
+		
+		switch (table) {
+		case "recipe_board":
+			List<recipeBoardVO> lvo = (List<recipeBoardVO>) o;
+			for(recipeBoardVO vo: lvo ) {
+				searchVO svo = new searchVO();
+				
+				svo.setPrimaryKey(vo.getRcp_b_num());
+				svo.setTitle(vo.getRcp_b_title());
+				svo.setAddress("../R_Board/board_detail?rcp_b_num=" + vo.getRcp_b_num());
+				
+				list.add(svo);
+			}
+			break;
+		case "tbl_member":
+			List<memberVO> mvo = (List<memberVO>) o;
+			for(memberVO vo: mvo ) {
+				searchVO svo = new searchVO();
+				
+				svo.setPrimaryKey(vo.getM_seq());
+				svo.setTitle(vo.getM_id());
+				svo.setAddress("../Admin/mInfo?m_id=" + vo.getM_id() + "&pageNum=");
+				
+				list.add(svo);
+			}
+			break;
+		case "tbl_order":
+			List<orderVO> ovo = (List<orderVO>) o;
+			for(orderVO vo: ovo ) {
+				searchVO svo = new searchVO();
+				
+				svo.setPrimaryKey(vo.getOrder_num());
+				svo.setTitle("" + vo.getOrder_num());
+				svo.setAddress("../Admin/oInfo?order_num=" + vo.getOrder_num() + "&pageNum=");
+				
+				list.add(svo);
+			}
+			break;
+		default:
+			break;
+		}
+		
+		return list;
 	}
 }

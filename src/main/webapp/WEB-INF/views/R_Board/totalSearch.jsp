@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../include/header.jsp" %>
+<c:set var="path" value="../resources/saladmall/"/>
 
-<c:set var="path" value="../resources/bootstrap/admin"/>    
+<%@ include file="../include/header.jsp" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +20,16 @@
 		<option value="review_board">리뷰</option>
 		<option value="salad_ingredient">재료</option>
 		<option value="salad_recipe">샐러드 레시피</option>
+		<option value="tbl_member" >회원</option>
+		<option value="tbl_order">주문</option>
 	</select>
 	<input id="searchText" type="text" placeholder="Search...">
    	<div>
        	<h4>Search By</h4>
+       <%-- 	${path }js/jquery-3.3.1.min.js --%>
        	<ul id="autoText">
        	</ul>
    </div>
-	
 	
 	<script src="${path}js/jquery-3.3.1.min.js"></script>
     <script src="${path}js/bootstrap.min.js"></script>
@@ -41,6 +43,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			alert("시작");
 			$("#searchText").keyup(function(){
 				$("#autoText").empty();
 				var selectOption = document.getElementById("selectCategory");
@@ -48,13 +51,11 @@
 				$.getJSON('searchTotal/' + selectOption, {searchData:$("#searchText").val()}, function(data){
 					$.each(data, function(index, title){
 						console.log(index);
-						$("#autoText").append('<li>'+title.rcp_b_title+'</a></li>');
+						$("#autoText").append('<li>'+title.address + '<br>' + title.title + '</li>');
 					});
 				});
 			});
 		});
 	</script>
-	
-<!-- 	<a href="./board_detail?rcp_b_num=' + title.rcp_b_num + '"> -->
 	
 <%@ include file="../include/footer.jsp" %>

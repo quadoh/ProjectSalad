@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.teamsalad.domain.Criteria;
 import com.teamsalad.domain.customerBoardVO;
+import com.teamsalad.domain.memberVO;
 
 //@Repository : 해당 클래스가 DAO객체의 역활을 하도록 등록(root-context.xml)
 
@@ -32,7 +34,25 @@ public class CSDAOImpl implements CSDAO {
 		
 		return sqlSession.selectList(namespace+".listALL");
 	}
+	
+	// 게시판 리스트 페이징
+	@Override
+	public List<customerBoardVO> listCri(Criteria cri) throws Exception {
 		
+		logger.info("mListCri(Criteria cri) 호출 !");
+
+		return sqlSession.selectList(namespace + ".listCri", cri);
+	}
+	
+	// 게시판 글 총 갯수 불러오기
+	@Override
+	public int countCSBoard(Criteria cri) throws Exception {
+		
+		logger.info("countCSBoard(Criteria cri) 호출 !");
+		
+		return sqlSession.selectOne(namespace+".countCSBoard", cri);
+	}
+	
 	// 게시판 글쓰기
 	@Override
 	public void create(customerBoardVO CS_vo) throws Exception {
@@ -73,5 +93,9 @@ public class CSDAOImpl implements CSDAO {
 		sqlSession.delete(namespace+".delete", customer_b_num);		
 		
 	}
+
+	
+	
+	
 	
 }

@@ -134,6 +134,8 @@ public class R_BoardServiceImpl implements R_BoardService {
 	public Object getSearchTotal(String table_name, String data) throws Exception {
 		// TODO Auto-generated method stub
 		
+		System.out.println("getSearchTotal 시작");
+		
 		Object returnData = new ArrayList<Object>();
 		
 		String primary_key = dao.total_getPrimaryKeyName(table_name);
@@ -155,6 +157,16 @@ public class R_BoardServiceImpl implements R_BoardService {
 		System.out.println(" service : search_num count : " + search_num.size() );
 		
 		returnData = dao.total_searchTotal(table_name, primary_key, search_num);
+		
+		System.out.println("Object to List<recipeBoardVO> Start");
+		
+		List<recipeBoardVO> boards = (List<recipeBoardVO>) returnData;
+		
+		for(recipeBoardVO board: boards) {
+			System.out.println("board title : " + board.getRcp_b_title() );
+		}
+		
+		System.out.println("Object to List<recipeBoardVO> Start");
 		
 		return returnData;
 	}

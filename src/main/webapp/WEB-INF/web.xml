@@ -57,6 +57,7 @@
 		</filter-mapping>
 	<!-- 한글처리 필터등록 : 한번만 하면 전부 동시에 한글처리, 모든 주소가 들어왔을 때 해당 인코딩 -->
 	
+	<!-- 댓글 처리 시 Overloaded POST  -->
 	<filter>
 		<filter-name>hiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
