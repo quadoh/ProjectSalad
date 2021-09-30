@@ -38,7 +38,7 @@ public class M_JoinDAOImpl implements M_JoinDAO {
 	@Override
 	public int idCheck(String m_id) {
 		
-		return 0;
+		return sqlSession.selectOne(namespace+".idCheck", m_id);
 	}
 
 

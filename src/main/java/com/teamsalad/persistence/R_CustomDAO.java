@@ -15,6 +15,8 @@ public interface R_CustomDAO {
 	// 레시피에 재료 추가
 	public void addCustom(int num) throws Exception;
 	
+	// 커스텀한 샐러드 불러오기 
+	
 	// 레시피 게시판에 글쓰기
 	
 	// 장바구니에 넣기

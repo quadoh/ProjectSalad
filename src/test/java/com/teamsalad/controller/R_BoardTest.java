@@ -21,11 +21,5 @@ public class R_BoardTest {
 	@Test
 	public void searchTest() throws Exception {
 		List<Integer> rcp_b_nums = dao.r_Board_searchData("rcp_b_title", "t");
-		
-		List<String> searchTitle = dao.r_Board_searchNum(rcp_b_nums);
-		
-		for(String s: searchTitle) {
-			System.out.println("제발되라!!!!!!!!!! " + s);
-		}
 	}
 }

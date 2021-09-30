@@ -28,4 +28,19 @@ public class R_CustomServiceImpl implements R_CustomService{
 		
 		return rcdao.listAll(category);
 	}
+	
+	@Override
+	public void newCustom(String id) throws Exception {
+		System.out.println(" S : newCustom() 호출 -> DAO");
+		
+		System.out.println(" S : DAO 처리 완료 ");
+		
+		// 값이 있으면 초기화
+//		if() {
+//			
+//		}
+		rcdao.newCustom(id);
+		
+	}
+	
 }

@@ -8,6 +8,15 @@ import com.teamsalad.domain.replyVO;
 
 public interface R_BoardService {
 	
+	// 게시물 등록하기
+	public void registBoard(recipeBoardVO vo) throws Exception;
+	
+	// 게시물 삭제하기
+	public void deleteBoard(int rcp_b_num) throws Exception;
+	
+	// 게시물 수정하기
+	public void modifyBoard(recipeBoardVO vo) throws Exception;
+	
 	// 게시물 리스트 페이지 불러오기
 	public List<BoardMemberVO> getListPage(int page, int total) throws Exception;
 	

@@ -59,13 +59,15 @@
 <!--      필요 테이블 선택 가능 -->
      
      <insert id="R_Board_regist">
-     	insert into recipe_board (m_id, rcp_num, rcp_b_title)
-     	values (#{m_id}, #{rcp_num}, #{rcp_b_title})
+     	insert into recipe_board (m_id, rcp_num, rcp_b_title, rcp_b_content, rcp_b_thumbnail, rcp_b_img1, rcp_b_img2, rcp_b_img3)
+     	values (#{m_id}, #{rcp_num}, #{rcp_b_title}, #{rcp_b_content}, #{rcp_b_thumbnail}, #{rcp_b_img1}, #{rcp_b_img2}, #{rcp_b_img3})
      </insert>
      
      <update id="R_Board_modify">
      	update recipe_board
-     	set rcp_b_content = #{rcp_b_content}
+     	set rcp_b_content = #{rcp_b_content}, rcp_b_title = #{rcp_b_title}, rcp_b_thumbnail = #{rcp_b_thumbnail},
+     	    rcp_b_img1 =#{rcp_b_img1}, rcp_b_img2 = #{rcp_b_img2}, rcp_b_img3 = #{rcp_b_img3}
+     	where rcp_b_num = #{rcp_b_num}
      </update>
      
      <delete id="R_Board_delete">

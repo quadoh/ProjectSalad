@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file="../include/header.jsp" %>
 
 <!-- Main content -->
 <section class="content">
-	<div class="row">
+	<div class="row" style="margin:auto;text-align:center;">
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h2 class="box-title">modify.jsp</h2>
+					<h2 class="box-title"> </h2>
 				</div>
 				<!-- /.box-header -->
 
 				<!-- form  시작 -->
 
-				<form role="form" action="" method="post">
+				<form role="form" action="" method="post" style="display:inline-block;">
 					<%-- <input type="hidden" name="bno" value="${uvo.bno }"> --%>
 
 					<div class="box-body">
@@ -54,7 +54,7 @@
 
 						<div class="form-group">
 							<label for="CS_Board5">내용</label>
-							<textarea class="form-control" name="customer_b_content" rows="3"
+							<textarea class="form-control" name="customer_b_content" rows="3" cols="60"
 								placeholder="내용을 입력하세요....">${CS_uvo.customer_b_content }</textarea>
 						</div>
 
@@ -62,8 +62,8 @@
 					<!-- /.box-body -->
 
 					<div class="box-footer">
-						<button type="submit" class="btn CS_btn-danger">수정하기</button>
-						<button type="submit" class="btn CS_btn-primary">취소하기</button>
+						<button type="submit" class="btn btn-success CS_btn-danger">수정하기</button>
+						<button type="submit" class="btn btn-primary CS_btn-primary">취소하기</button>
 					</div>
 				</form>
 
@@ -106,3 +106,4 @@
 
 	});
 </script>
+<%@ include file="../include/footer.jsp" %>

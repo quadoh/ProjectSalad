@@ -30,7 +30,7 @@ public class M_JoinServiceImpl implements M_JoinService{
 	@Override
 	public int idCheck(String m_id) throws Exception {
 		
-		return 0;
+		return mdao.idCheck(m_id);
 	}
 		
 	

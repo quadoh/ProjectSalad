@@ -13,13 +13,27 @@
   		</select>
   		
   		<!-- 커스텀 생성 -->
-  		<insert id="newCustom">
-  			insert into salad_custom(m_id, rcp_cmbnt)
-  			values(#{m_id},#(rcp_cmbnt))
+  		<insert id="newcustom">
+  			insert into salad_custom(m_id)
+  			values (#{m_id})
   		</insert>
   		
+  		<!-- 커스텀 받아오기 -->
+  		<select id="showcustom">
+  			select rcp_cmbnt
+  			from salad_custom
+  			where m_id = #{m_id}
+  		</select>
+  		
+  		<!-- 커스텀 초기화 -->
+  		<update id="resetcustom">
+  			update salad_custom set rcp_cmbnt = null
+  			where m_id = #{m_id}
+  		</update>
+  		
+  		
   		<!-- 커스텀에 재료 추가 -->
-  		<update id="addCustom">
+  		<update id="addcustom">
   			update salad_custom
   			set rcp_cmbnt = rcp_cmbnt+","+#{rcp_cmbnt}
   		</update>

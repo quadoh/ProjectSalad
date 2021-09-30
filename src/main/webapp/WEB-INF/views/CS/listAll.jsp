@@ -51,8 +51,11 @@ padding-top: 50px;
 	        							<td><span class="label label-primary">서비스 관련 문의</span></td>
 	   					 			</c:when>
 	   					 			<c:when test="${csvo.customer_b_type == 4}">
-	        							<td><span class="label label-danger">기타 문의</span></td>
+	        							<td><span class="label label-danger">고객 의견</span></td>
 	   					 			</c:when>
+	   					 			<c:otherwise> 
+	   					 				<td><span class="label label-danger">기타 문의</span></td>
+	   					 			</c:otherwise>
 								</c:choose>   	
 								<td><a href="/CS/read?customer_b_num=${csvo.customer_b_num }&pageNum=${pm.cri.pageNum }">${csvo.customer_b_title }</a></td>
 								<td>${csvo.m_id }</td>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import com.teamsalad.domain.BoardMemberVO;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
+import com.teamsalad.domain.recipeVO;
 import com.teamsalad.domain.replyVO;
 import com.teamsalad.domain.searchVO;
 import com.teamsalad.service.R_BoardService;
@@ -35,9 +37,11 @@ public class R_Board_Controller {
 	public void main(Model model) throws Exception{
 		
 		List<BoardMemberVO> vo = service.getListPage(0, 5);
+		List<BoardMemberVO> weeklyPopular = service.getWeeklyPopular();
 		
 		System.out.println(" controll ��� Ȯ�� : " + vo);
 		model.addAttribute("pages", vo);
+		model.addAttribute("weeklyPopular", weeklyPopular);
 	}
 	
 //	게시물 자세히 보기
@@ -47,11 +51,6 @@ public class R_Board_Controller {
 		List<BoardMemberVO> weeklyPopular = service.getWeeklyPopular();
 		
 		String m_id = (String)session.getAttribute("id");
-		
-		//로그인에서 scripts 경로 설정 안되서 임시 아이디 설정
-		//테스트 아이디 삭제할것
-        m_id = "ckck";
-		//테스트 아이디 삭제할것
 		
 		boolean likeCheck = false;
 		
@@ -76,16 +75,10 @@ public class R_Board_Controller {
 //	좋아요 체크 후 적용하기
 	@RequestMapping(value = "/likeCheck", method = RequestMethod.GET)
 	public String likeCheck(@RequestParam("rcp_b_num")int rcp_b_num, HttpSession session) throws Exception {
-		session.setAttribute("id", "admin");
 		
 		String m_id = (String)session.getAttribute("id");
 		
 		System.out.println("likeCheck 시작");
-		
-		//로그인에서 scripts 경로 설정 안되서 임시 아이디 설정
-		//테스트 아이디 삭제할것
-        m_id = "ckck";
-		//테스트 아이디 삭제할것
 		
 		if(m_id != null) {
 			// 로그인했느냐 체크 후 좋아요 유무 체크하여 좋아요를 이미 했을 경우 삭제
@@ -104,6 +97,69 @@ public class R_Board_Controller {
 		
 		return "redirect:/R_Board/board_detail?rcp_b_num="+rcp_b_num;
 	}
+	
+	// 게시물 등록 페이지 이동
+	@RequestMapping(value = "regist", method = RequestMethod.GET)
+	public void registBoardGET() throws Exception {
+		
+	}
+	
+	// 게시물 등록
+	@RequestMapping(value = "regist", method = RequestMethod.POST)
+	public String registBoardPOST(recipeBoardVO vo, HttpSession session) throws Exception {
+		
+		System.out.println("controller : 게시물 등록 시작");
+		
+		String id = (String)session.getAttribute("id");
+		
+		vo.setM_id(id);
+		
+		service.registBoard(vo);
+
+		System.out.println("controller : 게시물 등록 끝");
+		
+		return "redirect:/R_Board/boardList";
+	}
+	
+	// 게시물 삭제하기
+	@RequestMapping(value = "boardDelete", method = RequestMethod.GET)
+	public String boardDelete(@RequestParam int rcp_b_num) throws Exception{
+		
+		System.out.println("controller : 게시물 삭제 시작");
+		
+		service.deleteBoard(rcp_b_num);
+
+		System.out.println("controller : 게시물 삭제 시작");
+		
+		return "redirect:/R_Board/boardList";
+	}
+	
+	// 게시물 수정하기 페이지 이동
+	@RequestMapping(value = "boardModify", method = RequestMethod.GET)
+	public void boardModifyGET(@RequestParam("rcp_b_num")int rcp_b_num, Model model) throws Exception{
+		
+		System.out.println("modify get start");
+		
+		BoardMemberVO vo = service.getBoardDetail(rcp_b_num);
+		
+		System.out.println("modify get end");
+		
+		model.addAttribute("board", vo);
+	}
+	
+	// 게시물 수정하기
+	@RequestMapping(value = "boardModify", method = RequestMethod.POST)
+	public String boardModifyPOST(recipeBoardVO vo) throws Exception{
+		
+		System.out.println("modify post start");
+		
+		service.modifyBoard(vo);
+
+		System.out.println("modify post end");
+		
+		return "redirect:/R_Board/board_detail?rcp_b_num=" + vo.getRcp_b_num();
+	}
+	
 	
 	// Rest로 검색 결과 불러오기
 	@RequestMapping(value = "searchData")
@@ -170,6 +226,18 @@ public class R_Board_Controller {
 				svo.setPrimaryKey(vo.getOrder_num());
 				svo.setTitle("" + vo.getOrder_num());
 				svo.setAddress("../Admin/oInfo?order_num=" + vo.getOrder_num() + "&pageNum=");
+				
+				list.add(svo);
+			}
+			break;
+		case "salad_recipe":
+			List<recipeVO> rvo = (List<recipeVO>) o;
+			for(recipeVO vo: rvo ) {
+				searchVO svo = new searchVO();
+				
+				svo.setPrimaryKey(vo.getRcp_num());
+				svo.setTitle("" + vo.getRcp_name());
+				svo.setAddress("../Admin/oInfo?order_num=" + vo.getRcp_num() + "&pageNum=");
 				
 				list.add(svo);
 			}

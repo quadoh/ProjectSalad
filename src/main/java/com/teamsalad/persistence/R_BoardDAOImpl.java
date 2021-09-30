@@ -316,6 +316,13 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 			columns.remove(columns.indexOf("rcp_b_img2"));
 			columns.remove(columns.indexOf("rcp_b_img3"));
 			columns.remove(columns.indexOf("rcp_b_thumbnail"));
+		}else if(table_name.equals("salad_recipe")) {
+			columns.remove(columns.indexOf("rcp_num"));
+			columns.remove(columns.indexOf("rcp_img"));
+			columns.remove(columns.indexOf("rcp_date"));
+			columns.remove(columns.indexOf("rcp_like"));
+			columns.remove(columns.indexOf("rcp_week_count"));
+			columns.remove(columns.indexOf("rcp_total_count"));
 		}else if(table_name.equals("")) {
 			columns.remove(columns.indexOf(""));
 		}

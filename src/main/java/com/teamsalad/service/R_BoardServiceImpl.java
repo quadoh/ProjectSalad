@@ -18,6 +18,33 @@ public class R_BoardServiceImpl implements R_BoardService {
 	@Inject
 	private R_BoardDAO dao;
 	
+	// 게시물 등록하기
+	public void registBoard(recipeBoardVO vo) throws Exception{
+		System.out.println("게시물 등록 !");
+		
+		dao.r_Board_regist(vo);
+		
+		System.out.println("게시물 등록 끝!");
+	}
+	
+	// 게시물 삭제하기
+	public void deleteBoard(int rcp_b_num) throws Exception{
+		System.out.println("게시물 삭제 !");
+		
+		dao.r_Board_delete(rcp_b_num);
+		
+		System.out.println("게시물 삭제 끝!");
+	}
+	
+	// 게시물 수정하기
+	public void modifyBoard(recipeBoardVO vo) throws Exception{
+		System.out.println("게시물 수정 !");
+		
+		dao.r_Board_modify(vo);
+		
+		System.out.println("게시물 수정 끝!");
+	}
+	
 	// 게시물 리스트 페이지 불러오기
 	@Override
 	public List<BoardMemberVO> getListPage(int page, int total) throws Exception {
@@ -156,17 +183,8 @@ public class R_BoardServiceImpl implements R_BoardService {
 		
 		System.out.println(" service : search_num count : " + search_num.size() );
 		
-		returnData = dao.total_searchTotal(table_name, primary_key, search_num);
-		
-		System.out.println("Object to List<recipeBoardVO> Start");
-		
-		List<recipeBoardVO> boards = (List<recipeBoardVO>) returnData;
-		
-		for(recipeBoardVO board: boards) {
-			System.out.println("board title : " + board.getRcp_b_title() );
-		}
-		
-		System.out.println("Object to List<recipeBoardVO> Start");
+		if(search_num.size() != 0)
+			returnData = dao.total_searchTotal(table_name, primary_key, search_num);
 		
 		return returnData;
 	}
