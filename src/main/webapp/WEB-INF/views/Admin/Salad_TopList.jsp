@@ -9,14 +9,14 @@ text-align: center;
 }
 </style>
  
-<h1 style="text-align: center; padding-top: 30px;">주문 전체 목록 조회</h1>
+<h1 style="text-align: center; padding-top: 30px;">주간 샐러드 판매량 TOP10</h1>
 
-<section class="content" style="padding-top: 50px; padding-bottom: 50px;">
+<section class="content" style="padding-top: 50px; padding-bottom: 130px;">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">주간 레시피 탑텐</h3>
+					<h3 class="box-title">샐러드 판매량 탑텐 레시피 목록</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -34,66 +34,54 @@ text-align: center;
 										<tr role="row">
 											<th class="sorting_asc" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1" aria-sort="ascending"
-												aria-label="Rendering engine: activate to sort column descending">글번호</th>
+												aria-label="Rendering engine: activate to sort column descending">레시피번호</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1" aria-sort="ascending"
-												aria-label="Rendering engine: activate to sort column descending">회원아이디</th>
+												aria-label="Rendering engine: activate to sort column descending">레시피조합</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="Browser: activate to sort column ascending">레시피번호</th>
+												aria-label="Browser: activate to sort column ascending">레시피이름</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">글제목
+												aria-label="Browser: activate to sort column ascending">레시피내용</th>
+											<th class="sorting" tabindex="0" aria-controls="example2"
+												rowspan="1" colspan="1"
+												aria-label="CSS grade: activate to sort column ascending">레시피 작성 날짜
 											</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
+												aria-label="CSS grade: activate to sort column ascending">좋아요 갯수
 											</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
+												aria-label="CSS grade: activate to sort column ascending">레시피 가격
 											</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
+												aria-label="CSS grade: activate to sort column ascending">주간 판매량
 											</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
-											</th>
-											<th class="sorting" tabindex="0" aria-controls="example2"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
-											</th>
-											<th class="sorting" tabindex="0" aria-controls="example2"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">레시피명
+												aria-label="CSS grade: activate to sort column ascending">총 판매량
 											</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="srvo" items="${Salad_TopList }">
 											<tr role="row" class="odd">
-												<td><a href="#">${srvo.rcp_num }</a></td>
-												<td><a href="#">${srvo.rcp_cmbnt }</a></td>
-												<td><a href="#">${srvo.rcp_name }</a></td>
-												<td><a href="#">${srvo.rcp_content }</a></td>
-												<td><a href="#">${srvo.rcp_img }</a></td>
-												<td><a href="#">${srvo.rcp_date }</a></td>
-												<td><a href="#">${srvo.rcp_like }</a></td>
-												<td><a href="#">${srvo.rcp_price }</a></td>
-												<td><a href="#">${srvo.rcp_week_count }</a></td>
-												<td><a href="#">${srvo.rcp_total_count }</a></td>
+												<td>${srvo.rcp_num }</td>
+												<td>${srvo.rcp_cmbnt }</td>
+												<td>${srvo.rcp_name }</td>
+												<td>${srvo.rcp_content }</td>
+												<td>${srvo.rcp_date }</td>
+												<td>${srvo.rcp_like }</td>
+												<td>${srvo.rcp_price }</td>
+												<td>${srvo.rcp_week_count }</td>
+												<td>${srvo.rcp_total_count }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="example2_info" role="status"
-									aria-live="polite">Showing ${pm.cri.pageNum } to ${pm.endPage }</div>
 							</div>
 						</div>
 					</div>
@@ -108,26 +96,5 @@ text-align: center;
 	<!-- /.row -->
 </section>
 
-<div class="text-center">
-	<ul class="pagination">
-	
-		<!-- 이전 -->
-		<c:if test="${pm.prev }">
-			<li><a href="oListAll?pageNum=${pm.startPage-1 }"> &laquo;</a></li>
-		</c:if>
-
-		<!-- 페이지 번호 -->
-		<c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="idx">
-			<li <c:out value="${pm.cri.pageNum == idx? 'class = active ':''}"/>>
-				<a href="oListAll?pageNum=${idx }">${idx }</a>
-			</li>
-		</c:forEach>
-
-		<!-- 다음 -->
-		<c:if test="${pm.next && pm.endPage > 0 }">
-			<li><a href="oListAll?pageNum=${pm.endPage + 1}"> &raquo;</a></li>
-		</c:if>
-	</ul>
-</div>
 
 <%@ include file="footer.jsp"%>

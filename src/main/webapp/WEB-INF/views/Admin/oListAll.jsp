@@ -122,6 +122,14 @@ text-align: center;
 	<!-- /.row -->
 </section>
 
+<div class="hero__search__form" style="float: right;">
+	<input id="order_num" type="hidden">
+    <input id="order_name" type="text" placeholder="What do yo u need?">
+    <input id="order_btn" type="button" class="site-btn" value="search" >
+    <ul id="order_search">
+    </ul>
+</div>
+
 <div class="text-center">
 	<ul class="pagination">
 	
@@ -145,3 +153,34 @@ text-align: center;
 </div>
 
 <%@ include file="footer.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#order_name").keyup(function(){
+			if($("#order_name").val() == ""){
+				$("#order_search").empty();
+			}
+			else{
+				$("#order_search").empty();
+				var selectOption = "tbl_order";
+				$.getJSON('../R_Board/searchTotal/' + selectOption, {searchData:$("#order_name").val()}, function(data){
+					$.each(data, function(index, title){
+						$("#order_search").append('<li value="' + title.primaryKey + '"><a>' + title.title + '</a></li>');
+					});
+					$("#order_search li").click(function() {
+						document.getElementById('order_name').value = $(this).text();
+						document.getElementById('order_num').value = $(this).val();
+						$("#order_search").empty();
+					});
+				});
+			}
+			
+		});
+		
+		$("#order_btn").click(function(){
+			if($("#order_num").val() != "") {
+				location.href="/Admin/oInfo?order_num="+ $("#order_num").val() +"&pageNum=1";
+			}
+		});
+	});
+</script>

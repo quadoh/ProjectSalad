@@ -21,7 +21,7 @@
 	<select id="listCri" resultType="customerBoardVO">
 	   select * 
 	   from customer_board 
-	   order by customer_b_num
+	   order by customer_b_num desc
 	   limit #{skip},#{pageAmount}	  
 	</select>
 	

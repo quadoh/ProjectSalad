@@ -96,43 +96,28 @@
                             </form>
                         </div>
                         <div class="blog__sidebar__item" style="width: 360px; height: 214px;">
-                            <h4>Searche By Recipe Board</h4>
+                            <h4>Search By Recipe Board</h4>
 <!--                             스크롤바 숨기기 css 작성해야함 -->
                             <ul id="autoText" style="overflow: scroll;" >
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="${path}img/blog/sidebar/sr-1.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="${path}img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="${path}img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                           <h4>Weekly Popular</h4>
+                           <div class="blog__sidebar__recent">
+                           	<c:forEach var="item" items="${weeklyPopular }">
+                           		<a href="#" class="blog__sidebar__recent__item">
+                                   <div class="blog__sidebar__recent__item__pic">
+                                       <img src="${path}${item.board.rcp_b_thumbnail}" alt="">
+                                   </div>
+                                   <div class="blog__sidebar__recent__item__text">
+                                       <h6>${item.board.rcp_b_title }<br /> ${item.board.rcp_b_content }</h6>
+                                       <span>${item.board.rcp_b_date }</span>
+                                   </div>
+                               </a>
+                           	</c:forEach>
+                               
+                           </div>
+                       </div>
                       
                     </div>
                 </div>
@@ -166,6 +151,7 @@
                                     <div class="blog__details__social">
 <%--                                     ${board.like }로 좋아요 한지 안한지 true, false로 체크 가능 이걸로 색깔 지정해야함 --%>
                                         <a href="./likeCheck?rcp_b_num=${board.board.rcp_b_num }"><i class="fa fa-heart"></i></a>
+                                        <a><i class="fa fa-facebook"></i></a>
                                     </div>
                                     <div id="controll_btn" class="col-lg-1">
                                     	<input type="button" value="수정하기" onclick="location.href='./boardModify?rcp_b_num=${board.board.rcp_b_num}'">
@@ -187,29 +173,61 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related-blog-title">
-                        <h2>인기 상품</h2>
+                        <h2>댓글</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <c:forEach var="item" items="${weeklyPopular }">
-                	<div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="${path}${item.board.rcp_b_thumbnail}" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> ${item.board.rcp_b_date }</li>
-                                <li><i class="fa fa-comment-o"></i> ${item.board.rcp_b_like_count }</li>
-                            </ul>
-                            <h5><a href="#">${item.board.rcp_b_title }</a></h5>
-                            <p>${item.board.rcp_b_content }</p>
-                        </div>
-                    </div>
+            	<div class="col-lg-12">
+<!--             		
+						그림이 없는 댓글 형식을 사용해주시면 될거 같습니다!
+						밑에 내용은 그냥 하다가 알게된건데 프로젝트 진행에 크게 상관 없는 내용입니다.
+						blog__details__author 클래스 div를 연속으로 쓰면 자동 들여쓰기한거처럼 띄워짐
+						br태그 쓰면 자동 들여쓰기 형태가 사라짐
+						blog__details__author__pic 클래스 div를 삭제하면 자동 들여쓰기 사라짐
+ -->
+                    <div class="blog__details__author">
+					    <div class="blog__details__author__pic">
+					        <img src="${path}img/blog/details/details-author.jpg" alt="">
+					    </div>
+					    <div class="blog__details__author__text">
+					        <h6>아이디</h6>
+					        <span>내용</span>
+					    </div>
+					</div>
+					 <div class="blog__details__author">
+					    <div class="blog__details__author__pic">
+					        <img src="${path}img/blog/details/details-author.jpg" alt="">
+					    </div>
+					    <div class="blog__details__author__text">
+					        <h6>아이디</h6>
+					        <span>내용</span>
+					    </div>
+					</div>
+					<br>
+					<div class="blog__details__author">
+					    <div class="blog__details__author__pic">
+					        <img src="${path}img/blog/details/details-author.jpg" alt="">
+					    </div>
+					    <div class="blog__details__author__text">
+					        <h6>아이디</h6>
+					        <span>내용</span>
+					    </div>
+					</div>
+					<br>
+					<div class="blog__details__author">
+					    <div class="blog__details__author__text">
+					        <h6>아이디</h6>
+					        <span>내용</span>
+					    </div>
+					</div>
+					<div class="blog__details__author">
+					    <div class="blog__details__author__text">
+					        <h6>아이디</h6>
+					        <span>내용</span>
+					    </div>
+					</div>
                 </div>
-                </c:forEach>
-                
             </div>
         </div>
     </section>

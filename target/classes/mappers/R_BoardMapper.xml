@@ -91,6 +91,19 @@
      	limit #{page}, #{total}
      </select>
      
+     <select id="countBoards" resultType="int">
+	   select count(*) 
+	   from recipe_board
+	</select>
+     
+     <select id="bListCri" resultMap="boardmember">
+	   select * 
+	   from recipe_board
+	   natural join tbl_member
+       natural join salad_recipe
+	   limit #{skip},#{pageAmount}	  
+	</select>
+     
      <select id="R_Board_weeklyPopular" resultMap="boardmember">
      	select *
      	from recipe_board
@@ -191,7 +204,7 @@
 	    SELECT COLUMN_NAME
 		FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
 		WHERE TABLE_NAME = #{table_name}
-		AND CONSTRAINT_NAME = 'PRIMARY';
+		AND CONSTRAINT_NAME = 'PRIMARY'
      </select>
      
      <select id="Total_getDBColumn" resultType="String">

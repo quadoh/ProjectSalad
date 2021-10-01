@@ -62,9 +62,10 @@ list-style: none;
             </form>
             <!-- 게시글 버튼 제어 영역 ------------------------------------------------------------------------>	
 			<div class="form-row">
-				<c:if test="${session_id == CS_vo.m_id }">
+				<%-- <c:if test="${session_id == CS_vo.m_id }">
 					<button type="button" class="btn btn-success CSB_btn_modify">수정하기</button>
-				</c:if>
+				</c:if> --%>
+				<button type="button" class="btn btn-success CSB_btn_modify">수정하기</button>
 				<button type="button" class="btn btn-primary CSB_btn_list">목록으로</button>
 				<button type="button" class="btn btn-danger CSB_btn_delete">삭제하기</button>
 			</div>

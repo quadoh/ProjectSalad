@@ -90,13 +90,13 @@
                             </form>
                         </div>
                         <div class="blog__sidebar__item" style="width: 360px; height: 214px;">
-                            <h4>Searche By Recipe Board</h4>
+                            <h4>Search By Recipe Board</h4>
 <!--                             스크롤바 숨기기 css 작성해야함 -->
                             <ul id="autoText" style="overflow: scroll;" >
                             </ul>
                         </div>
                        <div class="blog__sidebar__item">
-                           <h4>Recent News</h4>
+                           <h4>Weekly Popular</h4>
                            <div class="blog__sidebar__recent">
                            	<c:forEach var="item" items="${weeklyPopular }">
                            		<a href="#" class="blog__sidebar__recent__item">
@@ -109,18 +109,6 @@
                                    </div>
                                </a>
                            	</c:forEach>
-                               
-                           </div>
-                       </div>
-                       <div class="blog__sidebar__item">
-                           <h4>Search By</h4>
-                           <div class="blog__sidebar__item__tags">
-                               <a href="#">Apple</a>
-                               <a href="#">Beauty</a>
-                               <a href="#">Vegetables</a>
-                               <a href="#">Fruit</a>
-                               <a href="#">Healthy Food</a>
-                               <a href="#">Lifestyle</a>
                            </div>
                        </div>
                    </div>
@@ -148,10 +136,17 @@
                        </c:forEach>
                        <div class="col-lg-12">
                            <div class="product__pagination blog__pagination">
-                               <a href="#">1</a>
-                               <a href="#">2</a>
-                               <a href="#">3</a>
-                               <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                           		<c:if test="${pm.prev }">
+									<a href="boardList?pageNum=${pm.startPage-1 }"> &laquo;</a>
+								</c:if>
+								<!-- 페이지 번호 -->
+								<c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="idx">
+									<a href="boardList?pageNum=${idx }">${idx }</a>
+								</c:forEach>
+								<!-- 다음 -->
+								<c:if test="${pm.next && pm.endPage > 0 }">
+									<a href="boardList?pageNum=${pm.endPage + 1}"> &raquo;</a>
+								</c:if>
                                <a id="board_write" href="./regist" style="width: 50px;">글 쓰기</a>
                            </div>
                        </div>

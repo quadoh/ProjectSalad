@@ -1,103 +1,128 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-
-<style>
-
-#mail_check_input_box_false{
-    background-color:#ebebe4;
-}
- 
-#mail_check_input_box_true{
-    background-color:white;
-}
-
-</style>
   
-<body>
-<div class="contact-form spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contact__form__title">
-                        <h2>회원가입</h2>
-                    </div>
-                </div>
-            </div>
-            <form action="" method="post">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <label>아이디</label>
-                        <input type="text" class="pw_input" name="m_id" id="m_id">
-                        <p class="idCheck" style="margin-bottom:0;"><span class="idCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                        <button type="button" class="btn btn-primary modalModBtn" style= "visibility: hidden;" id="id_dupli_use">사용 하기</button>
-                        <input type="hidden" value="false" id="dupliHidden">
-                    </div>
-                    <div class="col-lg-8">
-                        <label>비밀번호</label>
-                        <input type="password" class="pw_input" name="m_pw" id="m_pw1">
-                        <p class="pw1Check" style="margin-bottom:0;"><span class="pw1CheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                    </div>
-                    <div class="col-lg-8">
-                        <label>비밀번호 확인</label>
-                        <input type="password" class="pwck_input" name="m_pw2" id="m_pw2">
-                        <p class="pw2Check" style="margin-bottom:0;"><span class="pw2CheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                    </div>
-                    <div class="col-lg-8">
-                        <label>이름</label>
-                        <input type="text" class="user_input" name="m_name" id="m_name">
-                    </div>
-                    <div class="col-lg-8">
-                        <label>전화번호</label>
-                        <input type="text" class="user_input" name="m_phone" id="m_phone" placeholder="010-0000-0000">
-                        <p class="phoneCheck" style="margin-bottom:0;"><span class="phoneCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                    </div>
-                    <div class="col-lg-8">
-                        <label>이메일</label>
-                        <input type="text" class="mail_input" name="m_email" id="m_email">
-                        <p class="emailCheck" style="margin-bottom:0;"><span class="emailCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                        <button type="button" class="btn btn-primary" id="mail_check_button">인증번호 전송</button>
-                    </div>
-            		 <div class="col-lg-8">
-            		 	<div class="mail_check_input_box" id="mail_check_input_box_false">
-                        	<label>인증번호</label>
-                        	<input type="text" name="checkNumber" id="checkNumber" class="mail_check_input" disabled="disabled">
-                    	</div>
-                       	<p class="cknumCheck" style="margin-bottom:0;"><span class="cknumCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
-                    </div>
-                    <div class="col-lg-8">
-                    <label>주소</label>
-                        <input type="text" class="address_input_1" name="m_addr1" id="m_addr1" onclick="addrclick()">
-                        <button type="button" class="btn btn-primary">주소 검색</button>
-                    </div>
-                    <div class="col-lg-8">
-                    <label>상세 주소</label>
-                       <input type="text" class="address_input_2" name="m_addr2" id="m_addr2">
-                    </div>
-                    <div class="col-lg-8">
-                    	<button type="button" class="site-btn" id="MJoin_submit_Btn">가입하기</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
+
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-section set-bg"
+		data-setbg="/resources/saladmall/img/breadcrumb.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="breadcrumb__text">
+						<h2>회원가입</h2>
+						<div class="breadcrumb__option">
+							<a href="${pageContext.request.contextPath}/index">Home</a> <span>Join</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
+
+	<!-- Contact Section Begin -->
+
+<!-- 텡플릿  -->
+<section class="checkout spad">
+	<div class="container">
+		<div class="checkout__form join__form">
+			<form action="" method="post" name="joinform">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>아이디<span>*</span></p>
+							<input type="text" class="pw_input" name="m_id" id="m_id">
+							<p class="idCheck" style="margin-bottom:0;"><span class="idCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+							<button type="button" class="btn btn-primary modalModBtn" style= "visibility: hidden;" id="id_dupli_use">사용 하기</button>
+							<input type="hidden" id="idDuplication" value='false'>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>비밀번호<span>*</span></p>
+							<input type="password" class="pw_input" name="m_pw" id="m_pw1">
+							<p class="pw1Check" style="margin-bottom:0;"><span class="pw1CheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>비밀번호 확인<span>*</span></p>
+							<input type="password" class="pwck_input" name="m_pw2" id="m_pw2">
+							<p class="pw2Check" style="margin-bottom:0;"><span class="pw2CheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>이름<span>*</span></p>
+							<input type="text" class="user_input" name="m_name" id="m_name">
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>전화번호<span>*</span></p>
+							<input type="text" class="user_input" name="m_phone" id="m_phone" placeholder="010-0000-0000">
+							<p class="phoneCheck" style="margin-bottom:0;"><span class="phoneCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input ">
+							<p>이메일<span>*</span></p>
+							<div class="join_btn">
+								<input type="text" class="mail_input" name="m_email" id="m_email">
+								<p class="emailCheck" style="margin-bottom:0;"><span class="emailCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+								<button type="button" class="site-btn" id="mail_check_button">인증번호 전송</button>
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>인증번호<span>*</span></p>
+							<input type="text" name="checkNumber" id="checkNumber">
+							<p class="cknumCheck" style="margin-bottom:0;"><span class="cknumCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>주소<span>*</span></p>
+							<div class="join_btn">
+								<input type="text" class="address_input_1" name="m_addr1" id="m_addr1" onclick="addrclick()">
+								<button type="button" class="site-btn">주소 검색</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="checkout__input">
+							<p>상세 주소</p>
+							<input type="text" class="address_input_2" name="m_addr2" id="m_addr2">
+						</div>
+					</div>
+					<div class="col-lg-12 Btn_wide">
+						<button type="button" class="site-btn" id="MJoin_submit_Btn">가입하기</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+    
 <script type="text/javascript">
 
 /* 인증번호 이메일 전송 */
 $("#mail_check_button").click(function(){
+	
+	//alert("이메일전송");
 	
 	// 입력한 이메일
 	var email = $("#m_email").val();
 	
 	 $.ajax({
 	        type:"GET",
-	        url:"mailCheck?email=" + email
-	                
+	        url:"mailCheck?email=" + email	                
 	    });
-	
-	
-	
+ */	
 });
  
 
@@ -107,8 +132,7 @@ $(function() {
 		var getCheck = RegExp(/^[a-zA-Z0-9]{4,12}$/);
 		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		var getPhone = RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/);
-		var idCheck = false;
-
+		
 		// 첫 화면 도움말 아이디
 		$(".idCheck .idCheckMsg").css({
 			visibility : 'visible',
@@ -125,6 +149,7 @@ $(function() {
 
 		// 아이디 입력 값 검증
 		$('#m_id').keyup(function() {
+			
 			if ($('#m_id').val() == "") {
 				$(".idCheck .idCheckMsg").css({
 					visibility : 'visible',
@@ -176,13 +201,14 @@ $(function() {
 						}
 				    } // success 종료
 				}); // ajax 종료
-			}
+			} // else종료
 		});
+		// 아이디 입력 값 검증
 		
 		// 중복 아이디 체크 사용하기 버튼
 		$('#id_dupli_use').click(function() {
 			$("#m_id").attr('readonly', true);
-			$('#dupliHidden').val(true);
+			$('#idDuplication').attr('value', true);
 		});
 
 		// 비밀번호 입력 값 검증
@@ -240,9 +266,8 @@ $(function() {
 					color : 'red'
 				}).text("");
 			}
-		});// 이메일 입력 값 검증
+		});// 비밀번호 입력 값 검증
 		
-
 		// 이메일 입력 값 검증
 		$('#m_email').keyup(function() {
 			if (!getMail.test($("#m_email").val())) {
@@ -282,7 +307,8 @@ $(function() {
 			JoinSubmit();
 		});
 
-	}); // 메인 함수 선언종료
+	}); 
+	//회원가입 유효성 제어종료
 
 	// 서브밋 함수
 	function JoinSubmit() {
@@ -298,7 +324,7 @@ $(function() {
 		var m_addr1 = $('#m_addr1').val();
 		var m_addr2 = $('#m_addr2').val();
 		var m_zip = 1;
-		var idCheck = $('#dupliHidden').val();
+		var idCheck = $('#idDuplication').val();
 		
 		// 형식 설정
 		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
@@ -306,7 +332,7 @@ $(function() {
 		var getName = RegExp(/^[가-힣]+$/);
 		var fmt = RegExp(/^\d{6}[1234]\d{6}$/);
 		var getPhone = RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/);
-
+		
 		//아이디 공백 확인 
 		if ($("#m_id").val() == "") {
 			alert("아이디를 입력해 주세요");
@@ -323,8 +349,8 @@ $(function() {
 		}
 		
 		//아이디 중복 확인 검사 유무 
-		if (idCheck == false) {
-			alert("아이디를 중복검사를 실행해주세요");
+		if (idCheck == "false"){
+			alert("아이디 중복 검사 후 사용하기를 눌러주세요.");
 			$("#m_id").focus();
 			return false;
 		}
@@ -406,9 +432,10 @@ $(function() {
 			$("#m_addr1").focus();
 			$("#m_addr2").focus();
 			return false;
+		} else{
+			document.joinform.submit();
 		}
 		
-		submit();
 		
 	} // 회원가입 입력 데이터 유효성 검사 끝
 

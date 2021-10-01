@@ -3,6 +3,7 @@ package com.teamsalad.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.Criteria;
+import com.teamsalad.domain.PageMaker;
 import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.recipeBoardVO;
@@ -31,17 +34,27 @@ public class R_Board_Controller {
 	@Inject
 	R_BoardService service;
 	
+	@RequestMapping("common__form")
+	public void sss() throws Exception{
+		
+	}
+	
 //	게시물 리스트 가져오기
 //	http://localhost:8090/controller/R_Board/boardList
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public void main(Model model) throws Exception{
+	public void main(Model model, Criteria cri) throws Exception{
 		
-		List<BoardMemberVO> vo = service.getListPage(0, 5);
 		List<BoardMemberVO> weeklyPopular = service.getWeeklyPopular();
 		
-		System.out.println(" controll ��� Ȯ�� : " + vo);
-		model.addAttribute("pages", vo);
+		cri.setPageAmount(6);
+		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(service.countBoards(cri));
+		
+		model.addAttribute("pages", service.bListCri(cri));
 		model.addAttribute("weeklyPopular", weeklyPopular);
+		model.addAttribute("pm", pm);
 	}
 	
 //	게시물 자세히 보기

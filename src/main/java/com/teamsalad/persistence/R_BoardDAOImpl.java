@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.Criteria;
 import com.teamsalad.domain.ingredientVO;
+import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 
@@ -268,6 +270,22 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 		return vo;
 	}
 	
+	// 멤버 리스트 페이징
+	@Override
+	public List<BoardMemberVO> bListCri(Criteria cri) throws Exception {
+
+		logger.info("bListCri(Criteria cri) 호출 !");
+
+		return sqlSession.selectList(namespace + ".bListCri", cri);
+	}
+	
+	@Override
+	public int countBoards(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".countBoards", cri);
+	}
+	
+	
 	@Override
 	public List<recipeBoardVO> r_Board_searchNum(List<Integer> rcp_b_nums) throws Exception {
 		// TODO Auto-generated method stub
@@ -292,9 +310,12 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 	// 선택 테이블의 기본 키(PK) 불러오기
 	public String total_getPrimaryKeyName(String table_name) throws Exception{
 		
+		System.out.println(" DAO : getPrimaryKeyName 시작: ");
+		
 		String primaryKeyName = sqlSession.selectOne(namespace + ".Total_getPrimaryKeyName", table_name);
 		
 		logger.info(" DAO : getPrimaryKeyName 결과 확인 : " + primaryKeyName);
+		System.out.println(" DAO : getPrimaryKeyName 끝: " + primaryKeyName);
 		
 		return primaryKeyName;
 	}

@@ -55,6 +55,17 @@ public class M_LoginDAOImpl implements M_LoginDAO {
 		logger.info(" DAO : google 회원가입 완료 ");
 	}
 	
+	//비밀번호변경
+	@Override
+	public int updatePw(memberVO vo) throws Exception {
+		return sqlSession.update(namespace+".updatePw", vo);
+	}
+
+	// 회원정보 조회
+	@Override
+	public memberVO readMember(String m_id) {
+		return sqlSession.selectOne(namespace+".readMember", m_id);
+	}
 
 
 

@@ -9,14 +9,14 @@ text-align: center;
 }
 </style>
  
-<h1 style="text-align: center; padding-top: 30px;">주문 전체 목록 조회</h1>
+<h1 style="text-align: center; padding-top: 30px;">주간 인기 레시피 TOP10</h1>
 
-<section class="content" style="padding-top: 50px; padding-bottom: 50px;">
+<section class="content" style="padding-top: 50px; padding-bottom: 200px;">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">주간 레시피 탑텐</h3>
+					<h3 class="box-title">주간 레시피 게시판 좋아요 탑텐</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -35,16 +35,16 @@ text-align: center;
 											<th class="sorting_asc" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1" aria-sort="ascending"
 												aria-label="Rendering engine: activate to sort column descending">글번호</th>
+											<th class="sorting" tabindex="0" aria-controls="example2"
+												rowspan="1" colspan="1"
+												aria-label="CSS grade: activate to sort column ascending">글제목</th>
 											<th class="sorting_asc" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1" aria-sort="ascending"
 												aria-label="Rendering engine: activate to sort column descending">회원아이디</th>
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
 												aria-label="Browser: activate to sort column ascending">레시피번호</th>
-											<th class="sorting" tabindex="0" aria-controls="example2"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending">글제목
-											</th>
+
 											<th class="sorting" tabindex="0" aria-controls="example2"
 												rowspan="1" colspan="1"
 												aria-label="CSS grade: activate to sort column ascending">레시피명
@@ -54,21 +54,15 @@ text-align: center;
 									<tbody>
 										<c:forEach var="rbvo" items="${RBoard_TopList }">
 											<tr role="row" class="odd">
-												<td><a href="#">${rbvo.rcp_b_num }</a></td>
+												<td>${rbvo.rcp_b_num }</td>
+												<td><a href="/R_Board/board_detail?rcp_b_num=${rbvo.rcp_b_num }">${rbvo.rcp_b_title }</a></td>
 												<td>${rbvo.m_id }</td>
 												<td>${rbvo.rcp_num }</td>
-												<td>${rbvo.rcp_b_title }</td>
 												<td>${rbvo.rcp_b_like_count }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="example2_info" role="status"
-									aria-live="polite">Showing ${pm.cri.pageNum } to ${pm.endPage }</div>
 							</div>
 						</div>
 					</div>
@@ -82,27 +76,5 @@ text-align: center;
 	</div>
 	<!-- /.row -->
 </section>
-
-<div class="text-center">
-	<ul class="pagination">
-	
-		<!-- 이전 -->
-		<c:if test="${pm.prev }">
-			<li><a href="oListAll?pageNum=${pm.startPage-1 }"> &laquo;</a></li>
-		</c:if>
-
-		<!-- 페이지 번호 -->
-		<c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="idx">
-			<li <c:out value="${pm.cri.pageNum == idx? 'class = active ':''}"/>>
-				<a href="oListAll?pageNum=${idx }">${idx }</a>
-			</li>
-		</c:forEach>
-
-		<!-- 다음 -->
-		<c:if test="${pm.next && pm.endPage > 0 }">
-			<li><a href="oListAll?pageNum=${pm.endPage + 1}"> &raquo;</a></li>
-		</c:if>
-	</ul>
-</div>
 
 <%@ include file="footer.jsp"%>

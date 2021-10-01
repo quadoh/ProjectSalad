@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.Criteria;
+import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 import com.teamsalad.persistence.R_BoardDAO;
@@ -154,6 +156,22 @@ public class R_BoardServiceImpl implements R_BoardService {
 		// TODO Auto-generated method stub
 		
 		dao.r_Board_modifyReply(reply_b_content, reply_b_num);
+		
+	}
+	
+	@Override
+	public int countBoards(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countBoards(cri);
+	}
+	
+	// 전체 회원 목록 페이징 조회
+	@Override
+	public List<BoardMemberVO> bListCri(Criteria cri) throws Exception {
+
+		System.out.println("mListCri(Criteria cri) 호출! ");
+			
+		return dao.bListCri(cri);
 		
 	}
 	

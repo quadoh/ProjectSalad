@@ -9,51 +9,73 @@
 <meta name="google-signin-client_id" content="937295986828-c2at4cbrvd56g0r8n5ptsa5plssupb35.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-<!-- 회원가입 창  -->
-<section style="padding: 100px 400px 100px 400px; margin-left: 100px;">
-	<div class="box box-info" >
-		<div class="box-header with-border">
-			<h3 class="box-title" style="padding-bottom: 20px;">Login Form</h3>
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-section set-bg"
+		data-setbg="/resources/saladmall/img/breadcrumb.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="breadcrumb__text">
+						<h2>로그인</h2>
+						<div class="breadcrumb__option">
+							<a href="${pageContext.request.contextPath}/index">Home</a> <span>Login</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- form start -->
-		<form action="" class="form-horizontal" method="post">
-			<div class="box-body">
-				<div class="form-group">
-					<label for="m_id" class="col-sm-1 control-label">ID</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control loginInput" id="m_id" name="m_id" placeholder="아이디를 입력해주세요.">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="m_pw" class="col-sm-1 control-label">Password</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control loginInput" id="m_pw" name="m_pw" placeholder="비밀번호를 입력해주세요.">
-					</div>
-				</div>
-				<p id="idCheck" style="margin-bottom:0;"><span id="idCheckMsg" style="font-size:12px; font-weight:bold;"></span></p>
+	</section>
+	<!-- Breadcrumb Section End -->
+
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+	<div class="container">
+		<div class="common__form login__form">
+			<div class="contact__form__title">
+				<h2>Welcome</h2>
 			</div>
-			<!-- /.box-body -->
-			<div class="box-footer">
-				<!-- 구글 아이디 로그인 버튼  -->
-				<a class="g-signin2" id="googleLogin" onclick="init();" data-theme="dark"></a>
-				<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-				<div id="naver_id_login"></div>
-				<!-- 카카오로그인 -->
-				<a href="javascript:kakaoLogin();">
-					<img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height: 40px;width: auto;">
-				</a>
-				
-				<!-- 이 부분은 기능 테스트 상 임시로 넣어놓은 거라서 나중에 지울거에요 디자인 신경 안쓰셔도 됩니다.-->
-				<!-- <button type="button" class="btn btn-default" onclick="signOut();">google sign out</button> -->
-				
+			<form action="" method="post">
+				<div class="common__input">				
+					<input type="text" id="m_id" name="m_id" placeholder="아이디를 입력해주세요.">
+				</div>
+				<div class="common__input">
+					<input type="password" id="m_pw" name="m_pw" placeholder="비밀번호를 입력해주세요.">
+				</div>
+				<div class="Btn_wide">
+					<input type="button" class="site-btn" value="로그인" id="Mlogin_submit_Btn" name="Mlogin_submit_Btn">
+				</div>
 				<!-- 로그인 버튼 제어   -->
-				<button type="button" class="btn-primary">아이디/비밀번호 찾기</button>
-				<input type="button" class="btn-primary" value="로그인" id="Mlogin_submit_Btn" name="Mlogin_submit_Btn">
-			</div>
-			<!-- /.box-footer -->
-		</form>
+				<div class="navi-display">
+					<ul class="navi-list">
+						<li class="#"><a>회원가입</a></li>
+						<li class="#"><a>아이디/비밀번호 찾기</a></li>
+					</ul>
+				</div>
+				
+				<div class="divider">
+					<span data-v-d3dff3a6="">OR</span>
+				</div>
+
+				<div class="d-flex justify-content-around">
+					<!-- 구글 아이디 로그인 버튼  -->
+					<a class="g-signin2" id="googleLogin" onclick="init();" data-theme="dark"></a>
+					<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+					<div id="naver_id_login"></div>
+					<!-- 카카오로그인 -->
+					<a href="javascript:kakaoLogin();">
+						<img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height: 40px;width: auto;">
+					</a>
+					
+					<!-- 이 부분은 기능 테스트 상 임시로 넣어놓은 거라서 나중에 지울거에요 디자인 신경 안쓰셔도 됩니다.-->
+					<!-- <button type="button" class="btn btn-default" onclick="signOut();">google sign out</button> -->
+				</div>
+
+			</form>
+		</div>
 	</div>
 </section>
+<!-- Checkout Section End -->
 
 <!-- 자바스크립트 제어  -->
 	<script type="text/javascript">

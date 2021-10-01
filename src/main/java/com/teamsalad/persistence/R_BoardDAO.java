@@ -3,6 +3,7 @@ package com.teamsalad.persistence;
 import java.util.List;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.Criteria;
 import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 
@@ -57,6 +58,12 @@ public interface R_BoardDAO {
 	
 	// 댓글 수정하기
 	public void r_Board_modifyReply(String reply_b_content, int reply_b_num) throws Exception;
+	
+	// 멤버 리스트 페이징
+	public List<BoardMemberVO> bListCri(Criteria cri) throws Exception;
+	
+	public int countBoards(Criteria cri) throws Exception;
+	
 	
 	// recipe_board 컬럼 이름 가져오기
 	public List<String> r_Board_getColumn() throws Exception;

@@ -25,5 +25,19 @@
 		values (#{m_id}, #{m_pw}, #{m_name}, #{m_email})
 	</insert>
 	
+	<!-- 아이디 비밀번호 찾기  -->
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePw" >
+		update tbl_member set m_pw = #{m_pw} where m_id = #{m_id}
+	</update>
+	
+	<!-- 회원정보 가져오기  -->
+ 	<select id="readMember" resultType="memberVO">
+		select *
+		from tbl_member 
+		where m_id = #{m_id}
+	</select>
+
     
  </mapper>

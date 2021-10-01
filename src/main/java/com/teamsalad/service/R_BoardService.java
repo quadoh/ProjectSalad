@@ -3,6 +3,8 @@ package com.teamsalad.service;
 import java.util.List;
 
 import com.teamsalad.domain.BoardMemberVO;
+import com.teamsalad.domain.Criteria;
+import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.replyVO;
 
@@ -49,6 +51,12 @@ public interface R_BoardService {
 	
 	// 댓글 수정하기
 	public void modifyReply(int reply_b_num, String reply_b_content) throws Exception;
+	
+	// 전체 게시물 목록 갯수 조회
+	public int countBoards(Criteria cri) throws Exception;
+	
+	// 전체 게시판 목록 페이징 조회
+	public List<BoardMemberVO> bListCri(Criteria cri) throws Exception;
 	
 	// 선택한 테이블에서 데이터 검색하기
 	public Object getSearchTotal(String table_name, String data) throws Exception;

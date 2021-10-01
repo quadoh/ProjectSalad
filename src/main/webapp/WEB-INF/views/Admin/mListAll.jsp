@@ -105,6 +105,14 @@ text-align: center;
 	<!-- /.row -->
 </section>
 
+<div class="hero__search__form" style="float: right;">
+	<input id="member_num" type="hidden">
+    <input id="member_name" type="text" placeholder="What do yo u need?">
+    <input id="member_btn" type="button" class="site-btn" value="search">
+    <ul id="member_search">
+    </ul>
+</div>
+
 <div class="text-center">
 	<ul class="pagination">	
 		<!-- 이전 -->
@@ -127,3 +135,33 @@ text-align: center;
 <!-- 해야할 것 다시 목록으로 돌아갈때 해당 인덱스 기억하고 돌아가기  -->
 
 <%@ include file="footer.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#member_name").keyup(function(){
+			if($("#member_name").val() == ""){
+				$("#member_search").empty();
+			}
+			else{
+				$("#member_search").empty();
+				var selectOption = "tbl_member";
+				$.getJSON('../R_Board/searchTotal/' + selectOption, {searchData:$("#member_name").val()}, function(data){
+					$.each(data, function(index, title){
+						$("#member_search").append('<li value="' + title.primaryKey + '">' + title.title + '</li>');
+					});
+					$("#member_search li").click(function() {
+						document.getElementById('member_name').value = $(this).text();
+						document.getElementById('member_num').value = $(this).val();
+						$("#member_search").empty();
+					});
+				});
+			}
+		});
+		
+		$("#member_btn").click(function(){
+			if($("#member_num").val() != "") {
+				location.href="/Admin/mInfo?m_seq="+ $("#member_num").val() +"&pageNum=1";
+			}
+		});
+	});
+</script>
